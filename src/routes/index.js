@@ -3,11 +3,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LibraryRoute from "./Library";
 import HomeRoute from './Home'
 import AboutRoute from './About'
+import ErrorRoute from './Error'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomeRoute />
+    element: <HomeRoute />,
+    errorElement: <ErrorRoute />,
   },
   {
     path: "/library",
