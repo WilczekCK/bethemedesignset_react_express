@@ -1,18 +1,21 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import LibraryRoute from "./Library";
+import HomeRoute from './Home'
+import AboutRoute from './About'
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Homepage</div>,
+    element: <HomeRoute />
   },
   {
     path: "/library",
-    element: <div>Library</div>,
+    element: <LibraryRoute />
   },
   {
     path: "/about",
-    element: <div>About</div>,
+    element: <AboutRoute />
   }
 ]);
 
