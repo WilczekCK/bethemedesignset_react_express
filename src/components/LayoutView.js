@@ -49,7 +49,7 @@ function LayoutView() {
           <IframeResizer
             log
             src="https://themes.muffingroup.com/be/marketing2/"
-            style={{ width: convertDeviceToPx(device), height: '500px' }}
+            style={{ width: convertDeviceToPx(device), height: '500px', transition: 'width .3s ease-in-out' }}
             scrolling={true}
           />
         </Grid2>
