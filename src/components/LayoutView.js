@@ -32,7 +32,7 @@ function convertDeviceToPx(device){
   }
 }
 
-function LayoutView() {
+function Render() {
   const [device, setDevice] = React.useState('desktop'); // for DeviceSelectedButtons
 
   return (
@@ -58,4 +58,4 @@ function LayoutView() {
   );
 }
 
-export default LayoutView;
+export default Render;
