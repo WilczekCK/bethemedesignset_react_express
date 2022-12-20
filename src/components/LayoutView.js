@@ -6,6 +6,7 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
+import responsiveDetect from '../hooks/useResponsiveDetect'
 
 const LayoutView__container = styled(Paper)(({ }) => ({
   width: '1240px',
@@ -24,6 +25,8 @@ function DeviceSelectedButtons(props) {
 }
 
 function convertDeviceToPx(device){
+  console.log(responsiveDetect());
+
   switch (device) {
     case 'desktop': return '1240px';
     case 'tablet':  return '784px';
