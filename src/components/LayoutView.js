@@ -11,26 +11,32 @@ const LayoutView__container = styled(Paper)(({ }) => ({
   margin: '0 auto',
 }));
 
-function BasicButtonGroup() {
+function DeviceSelectedButtons(props) {
   return (
-    <ButtonGroup variant="outlined" aria-label="outlined button group">
-      <Button>Mobile</Button>
-      <Button>Tablet</Button>
-      <Button>Desktop</Button>
+    <ButtonGroup device={props.device} variant="outlined" aria-label="outlined button group">
+      <Button onClick={() => props.setDevice('mobile')}> Mobile </Button>
+      <Button onClick={() => props.setDevice('tablet')}> Tablet </Button>
+      <Button onClick={() => props.setDevice('desktop')}> Desktop </Button>
     </ButtonGroup>
   )
 }
 
 function LayoutView() {
+  const [device, setDevice] = React.useState('desktop'); // for DeviceSelectedButtons
+
   return (
     <LayoutView__container>
-      <BasicButtonGroup />
+      <DeviceSelectedButtons 
+        device={device} 
+        setDevice={setDevice}
+      />
+      
       <IframeResizer
-            log
-            src="https://themes.muffingroup.com/be/marketing2/"
-            style={{ width: '1240px' }}
-            scrolling={true}
-        />
+        log
+        src="https://themes.muffingroup.com/be/marketing2/"
+        style={{ width: '1240px' }}
+        scrolling={true}
+      />
     </LayoutView__container>
   );
 }
