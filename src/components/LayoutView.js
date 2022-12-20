@@ -1,5 +1,6 @@
 import React from 'react';
 import IframeResizer from 'iframe-resizer-react';
+import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -9,6 +10,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 const LayoutView__container = styled(Paper)(({ }) => ({
   width: '1240px',
   margin: '0 auto',
+  boxShadow: 'unset'
 }));
 
 function DeviceSelectedButtons(props) {
@@ -35,17 +37,23 @@ function LayoutView() {
 
   return (
     <LayoutView__container>
-      <DeviceSelectedButtons 
-        device={device} 
-        setDevice={setDevice}
-      />
-      
-      <IframeResizer
-        log
-        src="https://themes.muffingroup.com/be/marketing2/"
-        style={{ width: convertDeviceToPx(device) }}
-        scrolling={true}
-      />
+      <Grid2 container>
+        <Grid2 md={12}>
+          <DeviceSelectedButtons 
+            device={device} 
+            setDevice={setDevice}
+          />
+        </Grid2>
+
+        <Grid2 md={12}>
+          <IframeResizer
+            log
+            src="https://themes.muffingroup.com/be/marketing2/"
+            style={{ width: convertDeviceToPx(device), height: '500px' }}
+            scrolling={true}
+          />
+        </Grid2>
+      </Grid2>
     </LayoutView__container>
   );
 }
