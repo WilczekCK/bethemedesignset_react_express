@@ -21,6 +21,15 @@ function DeviceSelectedButtons(props) {
   )
 }
 
+function convertMobileToPx(device){
+  switch (device) {
+    case 'desktop': return '1240px';
+    case 'tablet':  return '784px';
+    case 'mobile':  return '315px'
+    default:        return '1240px';
+  }
+}
+
 function LayoutView() {
   const [device, setDevice] = React.useState('desktop'); // for DeviceSelectedButtons
 
@@ -34,7 +43,7 @@ function LayoutView() {
       <IframeResizer
         log
         src="https://themes.muffingroup.com/be/marketing2/"
-        style={{ width: '1240px' }}
+        style={{ width: convertMobileToPx(device) }}
         scrolling={true}
       />
     </LayoutView__container>
