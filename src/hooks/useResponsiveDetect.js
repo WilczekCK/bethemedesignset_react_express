@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function getActualDevice(){
     const px = window.innerWidth;
     let isMobile  = false;
     let isTablet  = false;
     let isDesktop = false;
-    console.log(px);
 
     switch(true){
         case (px > 0 && px < 768):
@@ -25,10 +24,12 @@ function getActualDevice(){
 }
 
 export default function Render(){
+    const [device, setDevice] = useState(getActualDevice());
+
     useEffect(() => {
-        window.addEventListener('resize', getActualDevice);
-        return () => window.removeEventListener('resize', getActualDevice);
+        window.addEventListener('resize', () => { setDevice(getActualDevice()) });
+        return window.removeEventListener('resize', () => { setDevice(getActualDevice()) });
     }, [])
 
-    return getActualDevice();
+    return device;
 }
