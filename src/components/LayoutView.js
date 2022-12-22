@@ -6,6 +6,10 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
+import PersonalVideoIcon from '@mui/icons-material/PersonalVideo';
+import TabletMacIcon from '@mui/icons-material/TabletMac';
+import StayCurrentPortraitIcon from '@mui/icons-material/StayCurrentPortrait';
+
 import responsiveDetect from '../hooks/useResponsiveDetect'
 
 const LayoutView__container = styled(Paper)(({ }) => ({
@@ -17,23 +21,25 @@ const LayoutView__container = styled(Paper)(({ }) => ({
 function DeviceSelectedButtons(props) {
   const actualDevice = responsiveDetect();
 
-  console.log(actualDevice);
   return (
     <ButtonGroup device={props.device} variant="outlined" aria-label="outlined button group">
       <Button 
-        onClick={() => props.setDevice('mobile')}>
-          Mobile
+        onClick={() => props.setDevice('mobile')}
+        >
+          <StayCurrentPortraitIcon/>
       </Button>
       
       <Button 
         onClick={() => props.setDevice('tablet')}
-        disabled={actualDevice.isMobile}> 
-          Tablet
+        disabled={actualDevice.isMobile}
+        > 
+          <TabletMacIcon/>
       </Button>
       
       <Button onClick={() => props.setDevice('desktop')}
-        disabled={actualDevice.isMobile || actualDevice.isTablet}> 
-          Desktop 
+        disabled={actualDevice.isMobile || actualDevice.isTablet}
+        > 
+          <PersonalVideoIcon/>
       </Button>
     </ButtonGroup>
   )
