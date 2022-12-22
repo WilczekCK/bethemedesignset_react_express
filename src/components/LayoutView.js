@@ -22,9 +22,10 @@ function DeviceSelectedButtons(props) {
   const actualDevice = responsiveDetect();
 
   return (
-    <ButtonGroup device={props.device} variant="outlined" aria-label="outlined button group">
+    <ButtonGroup device={props.device} aria-label="outlined button group">
       <Button 
         onClick={() => props.setDevice('mobile')}
+        variant={props.device === 'mobile' ? 'contained' : 'outlined'}
         >
           <StayCurrentPortraitIcon/>
       </Button>
@@ -32,12 +33,15 @@ function DeviceSelectedButtons(props) {
       <Button 
         onClick={() => props.setDevice('tablet')}
         disabled={actualDevice.isMobile}
+        variant={props.device === 'tablet' ? 'contained' : 'outlined'}
         > 
           <TabletMacIcon/>
       </Button>
       
-      <Button onClick={() => props.setDevice('desktop')}
+      <Button 
+        onClick={() => props.setDevice('desktop')}
         disabled={actualDevice.isMobile || actualDevice.isTablet}
+        variant={props.device === 'desktop' ? 'contained' : 'outlined'}
         > 
           <PersonalVideoIcon/>
       </Button>
