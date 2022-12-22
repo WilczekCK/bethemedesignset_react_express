@@ -15,18 +15,31 @@ const LayoutView__container = styled(Paper)(({ }) => ({
 }));
 
 function DeviceSelectedButtons(props) {
+  const actualDevice = responsiveDetect();
+
+  console.log(actualDevice);
   return (
     <ButtonGroup device={props.device} variant="outlined" aria-label="outlined button group">
-      <Button onClick={() => props.setDevice('mobile')}> Mobile </Button>
-      <Button onClick={() => props.setDevice('tablet')}> Tablet </Button>
-      <Button onClick={() => props.setDevice('desktop')}> Desktop </Button>
+      <Button 
+        onClick={() => props.setDevice('mobile')}>
+          Mobile
+      </Button>
+      
+      <Button 
+        onClick={() => props.setDevice('tablet')}
+        disabled={actualDevice.isMobile}> 
+          Tablet
+      </Button>
+      
+      <Button onClick={() => props.setDevice('desktop')}
+        disabled={actualDevice.isMobile || actualDevice.isTablet}> 
+          Desktop 
+      </Button>
     </ButtonGroup>
   )
 }
 
 function convertDeviceToPx(device){
-  console.log(responsiveDetect());
-
   switch (device) {
     case 'desktop': return '1240px';
     case 'tablet':  return '784px';
