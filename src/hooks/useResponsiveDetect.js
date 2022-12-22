@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import breakpoints from '../data/responsiveBreakpoints.json';
 import debounce from 'lodash.debounce';
 
 function getActualDevice(){
@@ -7,14 +8,18 @@ function getActualDevice(){
     let isTablet  = false;
     let isDesktop = false;
 
+    // Just for double-check, bcuz no TS
+    breakpoints.mobile = parseInt(breakpoints.mobile);
+    breakpoints.tablet = parseInt(breakpoints.tablet);
+
     switch(true){
-        case (px > 0 && px < 768):
+        case (px > 0 && px < breakpoints.mobile):
             isMobile = true;
             break;
-        case (px >= 768 && px < 1240):
+        case (px >= breakpoints.mobile && px < breakpoints.tablet):
             isTablet = true;
             break;
-        case (px >= 1240):
+        case (px >= breakpoints.tablet):
             isDesktop = true;
             break;
         default:
@@ -26,6 +31,8 @@ function getActualDevice(){
 
 export default function Render(){
     const [device, setDevice] = useState(getActualDevice());
+
+    console.log(breakpoints);
 
     useEffect(() => {
         const debounceFn = debounce(() => {
