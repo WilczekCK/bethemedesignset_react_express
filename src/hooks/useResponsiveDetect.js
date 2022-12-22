@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import debounce from 'lodash.debounce';
 
 function getActualDevice(){
     const px = window.innerWidth;
@@ -27,8 +28,12 @@ export default function Render(){
     const [device, setDevice] = useState(getActualDevice());
 
     useEffect(() => {
-        window.addEventListener('resize', () => { setDevice(getActualDevice()) });
-        return window.removeEventListener('resize', () => { setDevice(getActualDevice()) });
+        const debounceFn = debounce(() => {
+            setDevice(getActualDevice())
+        }, 100);
+        
+        window.addEventListener('resize', () => { debounceFn() });
+        return () => window.removeEventListener('resize', debounceFn() );
     }, [])
 
     return device;
