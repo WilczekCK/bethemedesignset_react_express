@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import breakpoints from '../data/responsiveBreakpoints.json';
 import debounce from 'lodash.debounce';
 
-function getActualDevice(){
+function getDevicesStatus(){
     const px = window.innerWidth;
     let mobile  = false;
     let tablet  = false;
@@ -29,19 +29,27 @@ function getActualDevice(){
     return {mobile, tablet, desktop}
 }
 
-export default function Render(){
-    const [device, setDevice] = useState(getActualDevice());
+function getActiveDeviceName(devicesStatus = false){
+    if (!devicesStatus) devicesStatus = getDevicesStatus();
+  
+    const deviceArrayKey = Object.keys(devicesStatus);
+    const deviceActiveName = deviceArrayKey.filter((key) => devicesStatus[key]);
+  
+    return deviceActiveName[0];
+  }
 
-    // console.log(breakpoints);
+export default function Render(){
+    const actualDevicesStatus = getDevicesStatus();
+    const [device, setDevice] = useState( actualDevicesStatus );
 
     useEffect(() => {
         const debounceFn = debounce(() => {
-            setDevice(getActualDevice())
+            setDevice(getDevicesStatus())
         }, 100);
         
         window.addEventListener('resize', () => { debounceFn() });
         return () => window.removeEventListener('resize', debounceFn() );
     }, [])
 
-    return device;
+    return {...device, actualDeviceName: getActiveDeviceName()};
 }

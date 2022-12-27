@@ -13,9 +13,11 @@ import responsiveDetect from '../hooks/useResponsiveDetect'
 
 function DeviceSelectedButtons(props) {
   const devicesStatus = responsiveDetect();
-  const activeDeviceName = getActiveDeviceName()
 
-  props.setDevice(activeDeviceName);
+  // force mobile reasigment for correct button states
+  props.setDevice(devicesStatus.actualDeviceName);
+
+  console.log(devicesStatus);
 
   return (
     <ButtonGroup device={props.device} aria-label="outlined button group">
@@ -28,7 +30,7 @@ function DeviceSelectedButtons(props) {
       
       <Button 
         onClick={() => props.setDevice('tablet')}
-        disabled={devicesStatus.isMobile}
+        disabled={devicesStatus.mobile}
         variant={props.device === 'tablet' ? 'contained' : 'outlined'}
         > 
           <TabletMacIcon/>
@@ -36,7 +38,7 @@ function DeviceSelectedButtons(props) {
       
       <Button 
         onClick={() => props.setDevice('desktop')}
-        disabled={devicesStatus.isMobile || devicesStatus.isTablet}
+        disabled={devicesStatus.mobile || devicesStatus.tablet}
         variant={props.device === 'desktop' ? 'contained' : 'outlined'}
         > 
           <PersonalVideoIcon/>
@@ -54,14 +56,7 @@ function convertDeviceToPx(device){
   }
 }
 
-function getActiveDeviceName(){
-  const devicesStatus = responsiveDetect();
 
-  const deviceArrayKey = Object.keys(devicesStatus);
-  const deviceActiveName = deviceArrayKey.filter((key) => devicesStatus[key]);
-
-  return deviceActiveName[0];
-}
 
 
 function Render() {
