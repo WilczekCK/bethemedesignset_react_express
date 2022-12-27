@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import IframeResizer from 'iframe-resizer-react';
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 
@@ -12,7 +12,10 @@ import StayCurrentPortraitIcon from '@mui/icons-material/StayCurrentPortrait';
 import responsiveDetect from '../hooks/useResponsiveDetect'
 
 function DeviceSelectedButtons(props) {
-  const actualDevice = responsiveDetect();
+  const devicesStatus = responsiveDetect();
+  const activeDeviceName = getActiveDeviceName()
+
+  props.setDevice(activeDeviceName);
 
   return (
     <ButtonGroup device={props.device} aria-label="outlined button group">
@@ -25,7 +28,7 @@ function DeviceSelectedButtons(props) {
       
       <Button 
         onClick={() => props.setDevice('tablet')}
-        disabled={actualDevice.isMobile}
+        disabled={devicesStatus.isMobile}
         variant={props.device === 'tablet' ? 'contained' : 'outlined'}
         > 
           <TabletMacIcon/>
@@ -33,7 +36,7 @@ function DeviceSelectedButtons(props) {
       
       <Button 
         onClick={() => props.setDevice('desktop')}
-        disabled={actualDevice.isMobile || actualDevice.isTablet}
+        disabled={devicesStatus.isMobile || devicesStatus.isTablet}
         variant={props.device === 'desktop' ? 'contained' : 'outlined'}
         > 
           <PersonalVideoIcon/>
@@ -51,9 +54,19 @@ function convertDeviceToPx(device){
   }
 }
 
-function Render() {
-  const [device, setDevice] = React.useState('desktop'); // for DeviceSelectedButtons
+function getActiveDeviceName(){
+  const devicesStatus = responsiveDetect();
 
+  const deviceArrayKey = Object.keys(devicesStatus);
+  const deviceActiveName = deviceArrayKey.filter((key) => devicesStatus[key]);
+
+  return deviceActiveName[0];
+}
+
+
+function Render() {
+  const [device, setDevice] = useState('isDesktop'); // for DeviceSelectedButtons
+  
   return (
       <Grid2 container direction={'column'} alignItems={'center'}>
         <Grid2 md={12} xs={12}>

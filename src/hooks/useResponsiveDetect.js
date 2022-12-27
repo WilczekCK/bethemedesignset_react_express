@@ -4,9 +4,9 @@ import debounce from 'lodash.debounce';
 
 function getActualDevice(){
     const px = window.innerWidth;
-    let isMobile  = false;
-    let isTablet  = false;
-    let isDesktop = false;
+    let mobile  = false;
+    let tablet  = false;
+    let desktop = false;
 
     // Just for double-check, bcuz no TS
     breakpoints.mobile = parseInt(breakpoints.mobile);
@@ -14,25 +14,25 @@ function getActualDevice(){
 
     switch(true){
         case (px > 0 && px < breakpoints.mobile):
-            isMobile = true;
+            mobile = true;
             break;
         case (px >= breakpoints.mobile && px < breakpoints.tablet):
-            isTablet = true;
+            tablet = true;
             break;
         case (px >= breakpoints.tablet):
-            isDesktop = true;
+            desktop = true;
             break;
         default:
             break;
     }
 
-    return {isMobile, isTablet, isDesktop}
+    return {mobile, tablet, desktop}
 }
 
 export default function Render(){
     const [device, setDevice] = useState(getActualDevice());
 
-    console.log(breakpoints);
+    // console.log(breakpoints);
 
     useEffect(() => {
         const debounceFn = debounce(() => {
