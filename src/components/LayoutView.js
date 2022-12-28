@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forceUpdate } from 'react';
 import IframeResizer from 'iframe-resizer-react';
+import debounce from 'lodash.debounce';
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 
 import Button from '@mui/material/Button';
@@ -8,6 +9,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import PersonalVideoIcon from '@mui/icons-material/PersonalVideo';
 import TabletMacIcon from '@mui/icons-material/TabletMac';
 import StayCurrentPortraitIcon from '@mui/icons-material/StayCurrentPortrait';
+
 
 import useResponsiveDetect from '../hooks/useResponsiveDetect'
 
@@ -49,13 +51,25 @@ function convertDeviceToPx(device){
   }
 }
 
+function setDeviceOnResize(props) {
+    const debounceFn = debounce(() => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      let devicesAvailable = useResponsiveDetect(); 
+      props.setDevice(devicesAvailable.actualDeviceName);
+    }, 100);
+      
+    window.addEventListener('resize', () => debounceFn() );
+    window.removeEventListener('resize', () => debounceFn() );
+}
 
 
 
 function Render() {
-  const devicesAvailable = useResponsiveDetect();
+  let devicesAvailable = useResponsiveDetect();
   const [device, setDevice] = useState(devicesAvailable.actualDeviceName); // for DeviceSelectedButtons
-  
+
+  setDeviceOnResize({device, setDevice});
+    
   return (
       <Grid2 container direction={'column'} alignItems={'center'}>
         <Grid2 md={12} xs={12}>
