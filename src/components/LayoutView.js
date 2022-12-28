@@ -9,33 +9,30 @@ import PersonalVideoIcon from '@mui/icons-material/PersonalVideo';
 import TabletMacIcon from '@mui/icons-material/TabletMac';
 import StayCurrentPortraitIcon from '@mui/icons-material/StayCurrentPortrait';
 
-import responsiveDetect from '../hooks/useResponsiveDetect'
+import useResponsiveDetect from '../hooks/useResponsiveDetect'
 
 function DeviceSelectedButtons(props) {
-  const devicesStatus = responsiveDetect();
-  console.log(devicesStatus);
-
   return (
-    <ButtonGroup device={props.device} aria-label="outlined button group">
+    <ButtonGroup aria-label="outlined button group">
       <Button 
         onClick={() => props.setDevice('mobile')}
-        variant={props.device === 'mobile' ? 'contained' : 'outlined'}
+        variant={props.deviceSelected === 'mobile' ? 'contained' : 'outlined'}
         >
           <StayCurrentPortraitIcon/>
       </Button>
       
       <Button 
         onClick={() => props.setDevice('tablet')}
-        disabled={devicesStatus.mobile}
-        variant={props.device === 'tablet' ? 'contained' : 'outlined'}
+        disabled={props.devicesAvailable.mobile}
+        variant={props.deviceSelected === 'tablet' ? 'contained' : 'outlined'}
         > 
           <TabletMacIcon/>
       </Button>
       
       <Button 
         onClick={() => props.setDevice('desktop')}
-        disabled={devicesStatus.mobile || devicesStatus.tablet}
-        variant={props.device === 'desktop' ? 'contained' : 'outlined'}
+        disabled={props.devicesAvailable.mobile || props.devicesAvailable.tablet}
+        variant={props.deviceSelected === 'desktop' ? 'contained' : 'outlined'}
         > 
           <PersonalVideoIcon/>
       </Button>
@@ -56,13 +53,15 @@ function convertDeviceToPx(device){
 
 
 function Render() {
-  const [device, setDevice] = useState('isDesktop'); // for DeviceSelectedButtons
+  const devicesAvailable = useResponsiveDetect();
+  const [device, setDevice] = useState('des'); // for DeviceSelectedButtons
   
   return (
       <Grid2 container direction={'column'} alignItems={'center'}>
         <Grid2 md={12} xs={12}>
           <DeviceSelectedButtons 
-            device={device} 
+            deviceSelected={device}
+            devicesAvailable={devicesAvailable}
             setDevice={setDevice}
           />
         </Grid2>
