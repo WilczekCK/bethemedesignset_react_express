@@ -10,7 +10,7 @@ import PersonalVideoIcon from '@mui/icons-material/PersonalVideo';
 import TabletMacIcon from '@mui/icons-material/TabletMac';
 import StayCurrentPortraitIcon from '@mui/icons-material/StayCurrentPortrait';
 
-
+import breakpoints from '../data/responsiveBreakpoints.json';
 import useResponsiveDetect from '../hooks/useResponsiveDetect'
 
 function DeviceSelectedButtons(props) {
@@ -42,18 +42,8 @@ function DeviceSelectedButtons(props) {
   )
 }
 
-function convertDeviceToPx(device){
-  switch (device) {
-    case 'desktop': return '1240px';
-    case 'tablet':  return '784px';
-    case 'mobile':  return '315px'
-    default:        return '1240px';
-  }
-}
-
 function setDeviceOnResize(props) {
     const debounceFn = debounce(() => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
       let devicesAvailable = useResponsiveDetect(); 
       props.setDevice(devicesAvailable.actualDeviceName);
     }, 100);
@@ -84,7 +74,7 @@ function Render() {
           <IframeResizer
             log={false}
             src="https://themes.muffingroup.com/be/marketing2/"
-            style={{ width: convertDeviceToPx(device), maxWidth:'90%', height: '500px', transition: 'width .3s ease-in-out' }}
+            style={{ width: breakpoints[device], maxWidth:'90%', height: '500px', transition: 'width .3s ease-in-out' }}
             scrolling={true}
           />
         </Grid2>
