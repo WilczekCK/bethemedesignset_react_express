@@ -54,7 +54,7 @@ function convertDeviceToPx(device){
 
 function Render() {
   const devicesAvailable = useResponsiveDetect();
-  const [device, setDevice] = useState(devicesAvailable); // for DeviceSelectedButtons
+  const [device, setDevice] = useState(devicesAvailable.actualDeviceName); // for DeviceSelectedButtons
   
   return (
       <Grid2 container direction={'column'} alignItems={'center'}>
