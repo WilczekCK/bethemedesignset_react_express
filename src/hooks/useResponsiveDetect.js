@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
 import breakpoints from '../data/responsiveBreakpoints.json';
-import debounce from 'lodash.debounce';
 
 function getDevicesStatus(){
     const px = window.innerWidth;
@@ -39,17 +37,5 @@ function getActiveDeviceName(devicesStatus = false){
   }
 
 export default function Render(){
-    const actualDevicesStatus = getDevicesStatus();
-    const [device, setDevice] = useState( actualDevicesStatus );
-
-    useEffect(() => {
-        const debounceFn = debounce(() => {
-            setDevice(getDevicesStatus())
-        }, 100);
-        
-        window.addEventListener('resize', () => { debounceFn() });
-        return () => window.removeEventListener('resize', debounceFn() );
-    }, [])
-
-    return {...device, actualDeviceName: getActiveDeviceName()};
+    return {...getDevicesStatus(), actualDeviceName: getActiveDeviceName()};
 }

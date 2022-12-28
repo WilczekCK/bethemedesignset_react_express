@@ -13,10 +13,6 @@ import responsiveDetect from '../hooks/useResponsiveDetect'
 
 function DeviceSelectedButtons(props) {
   const devicesStatus = responsiveDetect();
-
-  // force mobile reasigment for correct button states
-  props.setDevice(devicesStatus.actualDeviceName);
-
   console.log(devicesStatus);
 
   return (
@@ -73,7 +69,7 @@ function Render() {
 
         <Grid2 md={12} >
           <IframeResizer
-            log
+            log={false}
             src="https://themes.muffingroup.com/be/marketing2/"
             style={{ width: convertDeviceToPx(device), height: '500px', transition: 'width .3s ease-in-out' }}
             scrolling={true}
