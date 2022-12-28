@@ -1,60 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IframeResizer from 'iframe-resizer-react';
+import debounce from 'lodash.debounce';
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
+
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
+import PersonalVideoIcon from '@mui/icons-material/PersonalVideo';
+import TabletMacIcon from '@mui/icons-material/TabletMac';
+import StayCurrentPortraitIcon from '@mui/icons-material/StayCurrentPortrait';
 
-const LayoutView__container = styled(Paper)(({ }) => ({
-  width: '1240px',
-  margin: '0 auto',
-  boxShadow: 'unset'
-}));
+import breakpoints from '../data/responsiveBreakpoints.json';
+import useResponsiveDetect from '../hooks/useResponsiveDetect'
 
 function DeviceSelectedButtons(props) {
   return (
-    <ButtonGroup device={props.device} variant="outlined" aria-label="outlined button group">
-      <Button onClick={() => props.setDevice('mobile')}> Mobile </Button>
-      <Button onClick={() => props.setDevice('tablet')}> Tablet </Button>
-      <Button onClick={() => props.setDevice('desktop')}> Desktop </Button>
+    <ButtonGroup aria-label="outlined button group">
+      <Button 
+        onClick={() => props.setDevice('mobile')}
+        variant={props.deviceSelected === 'mobile' ? 'contained' : 'outlined'}
+        >
+          <StayCurrentPortraitIcon/>
+      </Button>
+      
+      <Button 
+        onClick={() => props.setDevice('tablet')}
+        disabled={props.devicesAvailable.mobile}
+        variant={props.deviceSelected === 'tablet' ? 'contained' : 'outlined'}
+        > 
+          <TabletMacIcon/>
+      </Button>
+      
+      <Button 
+        onClick={() => props.setDevice('desktop')}
+        disabled={props.devicesAvailable.mobile || props.devicesAvailable.tablet}
+        variant={props.deviceSelected === 'desktop' ? 'contained' : 'outlined'}
+        > 
+          <PersonalVideoIcon/>
+      </Button>
     </ButtonGroup>
   )
 }
 
-function convertDeviceToPx(device){
-  switch (device) {
-    case 'desktop': return '1240px';
-    case 'tablet':  return '784px';
-    case 'mobile':  return '315px'
-    default:        return '1240px';
-  }
+function setDeviceOnResize(props) {
+    const debounceFn = debounce(() => {
+      let devicesAvailable = useResponsiveDetect(); 
+      props.setDevice(devicesAvailable.actualDeviceName);
+    }, 100);
+      
+    window.addEventListener('resize', () => debounceFn() );
+    window.removeEventListener('resize', () => debounceFn() );
 }
 
-function Render() {
-  const [device, setDevice] = React.useState('desktop'); // for DeviceSelectedButtons
 
+
+function Render() {
+  let devicesAvailable = useResponsiveDetect();
+  const [device, setDevice] = useState(devicesAvailable.actualDeviceName); // for DeviceSelectedButtons
+
+  setDeviceOnResize({device, setDevice});
+    
   return (
-    <LayoutView__container>
-      <Grid2 container>
-        <Grid2 md={12}>
+      <Grid2 container direction={'column'} alignItems={'center'}>
+        <Grid2 md={12} xs={12}>
           <DeviceSelectedButtons 
-            device={device} 
+            deviceSelected={device}
+            devicesAvailable={devicesAvailable}
             setDevice={setDevice}
           />
         </Grid2>
 
-        <Grid2 md={12}>
+        <Grid2 md={12} >
           <IframeResizer
-            log
+            log={false}
             src="https://themes.muffingroup.com/be/marketing2/"
-            style={{ width: convertDeviceToPx(device), height: '500px', transition: 'width .3s ease-in-out' }}
+            style={{ width: breakpoints[device], maxWidth:'90%', height: '500px', transition: 'width .3s ease-in-out' }}
             scrolling={true}
           />
         </Grid2>
       </Grid2>
-    </LayoutView__container>
   );
 }
 
