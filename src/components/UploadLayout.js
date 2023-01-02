@@ -11,14 +11,17 @@ import SendIcon from '@mui/icons-material/Send';
 
 export default function Render(){
     const layoutCategories = ['About us', 'Blog', 'Portfolio', 'Contact', 'Others'];
-    const [layoutCategory, setLayoutCategory] = useState('Others');
+
+    const [state, setState] = useState({
+        layoutName: '',  
+        layoutCategory: '',  
+        layoutCode: '',  
+        layoutAuthor: '',  
+    })
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-
-        if(name === 'layoutCategory'){
-            setLayoutCategory(value)
-        } 
+        setState({ ...state, [name]: value })
     }
 
     const handleSubmit = (e) => {
@@ -36,18 +39,20 @@ export default function Render(){
                             required
                             id="outlined-required"
                             label="Layout name"
-                            defaultValue="Hello World"
+                            onChange={handleChange}
                             fullWidth
+                            value={state.layoutName}
+                            name='layoutName'
                         />
                     </FormControl>
 
-                    <FormControl fullWidth margin={'dense'}>
+                    <FormControl fullWidth margin={'dense'} required>
                         <InputLabel id="layout-select-label">Layout type</InputLabel>
                         <Select
                             labelId="layout-select-label"
                             id="layout-select"
                             onChange={handleChange}
-                            value={layoutCategory}
+                            value={state.layoutCategory}
                             label="Layout type"
                             name='layoutCategory'
                         >
@@ -61,12 +66,14 @@ export default function Render(){
                         <TextField
                             required
                             id="outlined-required"
-                            label="Layout name"
-                            defaultValue="Hello World"
+                            label="Layout code"
+                            value={state.layoutCode}
+                            onChange={handleChange}
                             fullWidth
                             multiline
                             rows={4}
                             maxRows={4}
+                            name='layoutCode'
                         />
                     </FormControl>
 
@@ -74,12 +81,13 @@ export default function Render(){
                         <TextField
                             id="outlined"
                             label="Author name"
-                            defaultValue="Hello World"
+                            value={state.layoutAuthor}
                             fullWidth
+                            onChange={handleChange}
+                            name='layoutAuthor'
                         />
                     </FormControl>
                     
-
                     <Button type="submit" variant="contained" endIcon={<SendIcon />}>
                         Send
                     </Button>
