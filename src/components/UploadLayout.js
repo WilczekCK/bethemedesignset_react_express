@@ -7,7 +7,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
 
 export default function Render(){
     const layoutCategories = ['About us', 'Blog', 'Portfolio', 'Contact', 'Others'];
@@ -88,9 +87,11 @@ export default function Render(){
                         />
                     </FormControl>
                     
-                    <Button type="submit" variant="contained" endIcon={<SendIcon />}>
-                        Send
-                    </Button>
+                    <FormControl fullWidth margin={'dense'}>
+                        <Button type="submit" size={'large'} variant="contained">
+                            Submit
+                        </Button>
+                    </FormControl>
                 </Box>
             </Grid2>
         </Grid2>
