@@ -6,6 +6,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function Render(){
     const layoutCategories = ['About us', 'Blog', 'Portfolio', 'Contact', 'Others'];
@@ -19,19 +21,27 @@ export default function Render(){
         } 
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('submitted');
+    }
+
     return (
         <Grid2 container justifyContent={'center'}>
             <Grid2 md={4} xs={8} style={{'border': '2px solid black'}}>
                 <h3> Paste the code you got from export tool </h3>
-                <Box component="form" noValidate autoComplete="off">
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="Layout name"
-                        defaultValue="Hello World"
-                    />
+                <Box textAlign={'left'} component="form" noValidate autoComplete="off" m={3} onSubmit={handleSubmit}>
+                    <FormControl fullWidth margin={'dense'}>
+                        <TextField
+                            required
+                            id="outlined-required"
+                            label="Layout name"
+                            defaultValue="Hello World"
+                            fullWidth
+                        />
+                    </FormControl>
 
-                    <FormControl>
+                    <FormControl fullWidth margin={'dense'}>
                         <InputLabel id="layout-select-label">Layout type</InputLabel>
                         <Select
                             labelId="layout-select-label"
@@ -45,7 +55,34 @@ export default function Render(){
                                 <MenuItem value={item}> {item} </MenuItem>
                             )) }
                         </Select>
+                        </FormControl>
+
+                    <FormControl fullWidth margin={'dense'}>
+                        <TextField
+                            required
+                            id="outlined-required"
+                            label="Layout name"
+                            defaultValue="Hello World"
+                            fullWidth
+                            multiline
+                            rows={4}
+                            maxRows={4}
+                        />
                     </FormControl>
+
+                    <FormControl fullWidth margin={'dense'}>
+                        <TextField
+                            id="outlined"
+                            label="Author name"
+                            defaultValue="Hello World"
+                            fullWidth
+                        />
+                    </FormControl>
+                    
+
+                    <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+                        Send
+                    </Button>
                 </Box>
             </Grid2>
         </Grid2>
