@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -30,9 +32,11 @@ export default function Render(){
 
     return (
         <Grid2 container justifyContent={'center'}>
-            <Grid2 md={4} xs={8} style={{'border': '2px solid black'}}>
-                <h3> Paste the code you got from export tool </h3>
-                <Box textAlign={'left'} component="form" autoComplete="off" m={3} onSubmit={handleSubmit}>
+            <Grid2 md={4} xs={8} style={{'border': '2px solid black', 'padding': '0px 5% 20px'}}>
+                <h3> Use the form below to share layout with other people. </h3>
+                <Link to={'/help'}> Do not know what is layout code? </Link>
+                
+                <Box textAlign={'left'} component="form" autoComplete="off" onSubmit={handleSubmit}>
                     <FormControl fullWidth margin={'dense'}>
                         <TextField
                             required
