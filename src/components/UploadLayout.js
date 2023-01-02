@@ -57,7 +57,7 @@ export default function Render(){
                             name='layoutCategory'
                         >
                             { layoutCategories.map((item) => (
-                                <MenuItem value={item}> {item} </MenuItem>
+                                <MenuItem value={item} key={item}> {item} </MenuItem>
                             )) }
                         </Select>
                         </FormControl>
