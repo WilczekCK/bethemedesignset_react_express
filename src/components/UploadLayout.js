@@ -33,7 +33,7 @@ export default function Render(){
         <Grid2 container justifyContent={'center'}>
             <Grid2 md={4} xs={8} style={{'border': '2px solid black'}}>
                 <h3> Paste the code you got from export tool </h3>
-                <Box textAlign={'left'} component="form" noValidate autoComplete="off" m={3} onSubmit={handleSubmit}>
+                <Box textAlign={'left'} component="form" autoComplete="off" m={3} onSubmit={handleSubmit}>
                     <FormControl fullWidth margin={'dense'}>
                         <TextField
                             required
