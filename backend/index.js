@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const secret = process.env.SECRET_KEY;
+const rateLimit = require("express-rate-limit");
 
 const isAuthorizedToRoute = (req, res, next) => {
     if (req.query.secret_key !== secret) {
@@ -12,6 +13,13 @@ const isAuthorizedToRoute = (req, res, next) => {
         next();
     }
 }
+
+app.use(
+    rateLimit({
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 30, // 5 calls
+    })
+);
 
 app.get("/", (req, res) => {
   res.send(`Hello world!`);
