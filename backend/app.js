@@ -5,7 +5,6 @@ const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const express = require("express");
 
-
 const app = express();
 const router = express.Router();
 const config = require('./config');
@@ -17,7 +16,6 @@ app.use(express.json());
 
 // Routes
 const isAuthorizedToRoute = (req, res, next) => {
-    console.log(req.body);
     if (req.body.secret_key !== config.secretKey) {
         res.sendStatus(401);
     } else {
@@ -26,6 +24,7 @@ const isAuthorizedToRoute = (req, res, next) => {
 }    
 
 require('./routes/sections')(app, isAuthorizedToRoute);
+require('./routes/editors')(app, isAuthorizedToRoute);
 
 
 module.exports = app;
