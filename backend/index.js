@@ -1,29 +1,21 @@
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
+const config = require('./config');
 
 const app = express();
 const port = 3000;
-const secret = process.env.SECRET_KEY;
-
 
 const isAuthorizedToRoute = (req, res, next) => {
-    if (req.query.secret_key !== secret) {
+    if (req.query.secret_key !== config.secretKey) {
         res.sendStatus(401);
     } else {
         next();
     }
 }
 
-app.use(
-    rateLimit({
-      windowMs: 15 * 60 * 1000, // 15 minutes
-      max: 30, // 5 calls
-    })
-);
-
+app.use(rateLimit(config.rateLimit));
 app.use(cors());
 app.use(helmet());
 
