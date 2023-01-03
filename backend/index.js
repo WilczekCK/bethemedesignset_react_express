@@ -1,10 +1,13 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 
 const app = express();
 const port = 3000;
 const secret = process.env.SECRET_KEY;
-const rateLimit = require("express-rate-limit");
+
 
 const isAuthorizedToRoute = (req, res, next) => {
     if (req.query.secret_key !== secret) {
@@ -20,6 +23,9 @@ app.use(
       max: 30, // 5 calls
     })
 );
+
+app.use(cors());
+app.use(helmet());
 
 app.get("/", (req, res) => {
   res.send(`Hello world!`);
