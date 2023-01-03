@@ -1,7 +1,11 @@
 module.exports = function(app, isAuthorizedToRoute){
+    const sql = require('../controllers/mysql.controller');
+
     app.route('/section')
-        .get((req, res) => {
-            res.send('GET route');
+        .get(async (req, res) => {
+            const isConnectedToSQL = await sql.isConnected();
+
+            res.send( isConnectedToSQL );
         })
         .post(isAuthorizedToRoute, (req,res) => {
             res.send('POST route');

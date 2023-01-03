@@ -10,6 +10,7 @@ exports.cors = {
     //not yet
 }
 exports.mysql = {
+    dbName: 'bethemedesignset',
     server: 'localhost:3306',
     user: 'root',
     password: 'rootpass'
