@@ -1,5 +1,4 @@
 require("dotenv").config();
-const config = require('./config');
 
 exports.secretKey = process.env.SECRET_KEY;
 exports.serverPort = 3000;
