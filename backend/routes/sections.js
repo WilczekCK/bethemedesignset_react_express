@@ -1,11 +1,11 @@
 module.exports = function(app, isAuthorizedToRoute){
-    const sql = require('../controllers/mysql.controller');
+    const Editor = require('../models/editor');
 
     app.route('/section')
         .get(async (req, res) => {
-            const isConnectedToSQL = await sql.isConnected();
+            const allEditors = await Editor.findAll();
 
-            res.send( isConnectedToSQL );
+            res.send( allEditors );
         })
         .post(isAuthorizedToRoute, (req,res) => {
             res.send('POST route');

@@ -1,8 +1,8 @@
 const { Sequelize } = require('sequelize');
 const config = require('../config');
 
-class Sql {
-    sequelize = {};
+class SQL {
+    connection = {};
     
     setConnection() {
         return new Sequelize(`mysql://${config.mysql.user}:${config.mysql.password}@${config.mysql.server}/${config.mysql.dbName}`)
@@ -24,8 +24,8 @@ class Sql {
     }
 
     constructor(){
-        this.sequelize = this.setConnection();
+        this.connection = this.setConnection();
     }
 }
 
-module.exports = new Sql();
+module.exports = new SQL();
