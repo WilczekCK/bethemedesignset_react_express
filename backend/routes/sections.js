@@ -1,9 +1,10 @@
 module.exports = function(app, isAuthorizedToRoute){
     const Editor = require('../models/editor');
+    const Section = require('../models/section');
 
     app.route('/section')
         .get(async (req, res) => {
-            const allEditors = await Editor.findAll();
+            const allEditors = await Section.findAll();
 
             res.send( allEditors );
         })
