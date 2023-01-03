@@ -10,3 +10,8 @@ exports.rate = {
 exports.cors = {
     //not yet
 }
+exports.mysql = {
+    server: 'localhost:3306',
+    user: 'root',
+    password: 'rootpass'
+}
