@@ -10,10 +10,10 @@ const app = express();
 const router = express.Router();
 const config = require('./config');
 
-
 app.use(rateLimit(config.rateLimit));
 app.use(cors());
 app.use(helmet());
+app.use(express.json());
 
 // Routes
 const isAuthorizedToRoute = (req, res, next) => {
