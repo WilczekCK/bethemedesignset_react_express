@@ -40,7 +40,7 @@ class SectionController {
     }
 
     setLimit({limit}){
-        if (limit) {
+        if (limit && parseInt(limit) !== NaN) {
             this.limit = parseInt(limit);
         }
         
@@ -48,7 +48,7 @@ class SectionController {
     }
 
     setOffset({offset}){
-        if (offset) {
+        if (offset && parseInt(offset) !== NaN) {
             this.offset = parseInt(offset);
         }
 
@@ -66,7 +66,7 @@ class SectionController {
     }
 
     async remove({id}){
-        if( !id ) {
+        if (!id && parseInt(id) !== NaN) {
             console.error(`ID to remove is missing`);
             return false;
         }
