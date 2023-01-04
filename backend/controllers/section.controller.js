@@ -55,14 +55,24 @@ class SectionController {
         return this;
     }
 
-    async createSection({editor_id, description, code, category}){
+    async create({editor_id, description, code, category}){
         if( !editor_id || !description || !code || !category ) {
             console.error(`One of the values are missing`);
             return false;
         }
-        
+
         const section = await Section.create({editor_id, description, code, category});
         return section;
+    }
+
+    async remove({id}){
+        if( !id ) {
+            console.error(`ID to remove is missing`);
+            return false;
+        }
+
+        const section = await Section.destroy({where: {id: parseInt(id)}});
+        return `Removed ${section} records`;
     }
 
     get records() {
