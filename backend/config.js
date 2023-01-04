@@ -1,5 +1,4 @@
 require("dotenv").config();
-const config = require('./config');
 
 exports.secretKey = process.env.SECRET_KEY;
 exports.serverPort = 3000;
@@ -9,4 +8,10 @@ exports.rate = {
 }
 exports.cors = {
     //not yet
+}
+exports.mysql = {
+    dbName: 'bethemedesignset',
+    server: 'localhost:3306',
+    user: 'root',
+    password: 'rootpass'
 }
