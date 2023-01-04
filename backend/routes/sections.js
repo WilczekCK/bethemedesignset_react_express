@@ -5,7 +5,10 @@ module.exports = function(app, isAuthorizedToRoute){
     app.route('/sections')
         .get(async (req, res) => {
             const results = await sectionController
-                .setWhereObj(req.query.where)
+                .setWhere(req.query)
+                .setOrder(req.query)
+                .setLimit(req.query)
+                .setOffset(req.query)
                 .records;
             
             res.send( results );
