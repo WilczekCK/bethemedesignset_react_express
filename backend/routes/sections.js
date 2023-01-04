@@ -13,8 +13,9 @@ module.exports = function(app, isAuthorizedToRoute){
             
             res.send( results );
         })
-        .post(isAuthorizedToRoute, (req,res) => {
-            res.send('POST route');
+        .post(isAuthorizedToRoute, async (req,res) => {
+            const results = await sectionController.create(req.body);
+            res.send(results);
         })
         .delete(isAuthorizedToRoute, (req,res) => {
             res.send('DELETE route');

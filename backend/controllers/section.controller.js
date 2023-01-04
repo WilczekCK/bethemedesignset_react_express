@@ -32,7 +32,7 @@ class SectionController {
                 }
             } 
         }catch(err){
-            console.log(`Error with setOrder: ${err}`);
+            console.error(`Error with setOrder: ${err}`);
             this.order = ['id', 'DESC'];
         }
 
@@ -53,6 +53,16 @@ class SectionController {
         }
 
         return this;
+    }
+
+    async createSection({editor_id, description, code, category}){
+        if( !editor_id || !description || !code || !category ) {
+            console.error(`One of the values are missing`);
+            return false;
+        }
+        
+        const section = await Section.create({editor_id, description, code, category});
+        return section;
     }
 
     get records() {
