@@ -2,7 +2,11 @@ const Editor = require('../models/editor');
 const Section = require('../models/section');
 
 class SectionController {
-    whereObj = {}; // for getter
+    // variables for getter
+    whereObj = {}; 
+    orderBy = ['id', 'asc'];
+    limit = 5;
+    skip = 0;
 
     setWhereObj( where ) {
         try{
@@ -17,7 +21,7 @@ class SectionController {
     }
 
     get records() {
-        return (async () => await Section.findAll({ where: this.whereObj }) )();
+        return (async () => await Section.findAll({ where: this.whereObj, offset: this.offset, limit: this.limit, order: this.order }) )();
     }
 
     constructor(){
