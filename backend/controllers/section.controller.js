@@ -5,16 +5,19 @@ class SectionController {
     whereObj = {}; // for getter
 
     setWhereObj( where ) {
-        this.whereObj = where;
+        try{
+            const parsedJSON = JSON.parse(where);
+            this.whereObj = parsedJSON;
+        }catch(err){
+            console.log('Error with setting up the where object in section controller '+ err);
+            this.whereObj = {};
+        }
+
         return this;
     }
 
-    get allRecords() {
-        return (async () => await Section.findAll())();
-    }
-
     get records() {
-        return (async () => await Section.findOne({ where }))();
+        return (async () => await Section.findAll({ where: this.whereObj }) )();
     }
 
     constructor(){

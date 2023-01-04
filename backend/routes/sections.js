@@ -4,14 +4,11 @@ module.exports = function(app, isAuthorizedToRoute){
 
     app.route('/sections')
         .get(async (req, res) => {
-            if (where = req.query.where) {
-                const parsedJSON = JSON.parse(where);
-
-                console.log(parsedJSON);
-            } else {
-                const getAllRecords = await sectionController.allRecords;
-                res.send( getAllRecords );
-            }
+            const results = await sectionController
+                .setWhereObj(req.query.where)
+                .records;
+            
+            res.send( results );
         })
         .post(isAuthorizedToRoute, (req,res) => {
             res.send('POST route');
