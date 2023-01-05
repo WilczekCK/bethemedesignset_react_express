@@ -21,8 +21,9 @@ module.exports = function(app, isAuthorizedToRoute){
             const results = await sectionController.remove(req.body);
             res.send(results);
         })
-        .patch(isAuthorizedToRoute, (req,res) => {
-            res.send('PATCH route');
+        .patch(isAuthorizedToRoute, async (req,res) => {
+            const results = await sectionController.modify(req.body);
+            res.send(results);
         })
         .put(isAuthorizedToRoute, (req,res) => {
             res.send('PUT route');

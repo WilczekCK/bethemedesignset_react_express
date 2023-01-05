@@ -81,6 +81,21 @@ class SectionController {
         return `Removed ${section} records`;
     }
 
+
+    async modify({id, columnName, newValue}){
+        if (!id || !columnName || !newValue) {
+            console.error(`One or more of the fields to modify are missing`);
+            return false;
+        }
+
+        const recordToChange = await Section.update(
+            { [columnName]:newValue },
+            { where: {id}}
+        );
+            
+        return `Updated ${recordToChange} records`;
+    }
+
     get records() {
         return (async () => await Section.findAll({ where: this.whereObj, offset: this.offset, limit: this.limit, order: [this.order] }) )();
     }
