@@ -4,7 +4,7 @@ const SQL = require('./mysql.controller');
 
 class SectionController {
     // variables for getter
-    whereObj = {}; 
+    whereObject = {}; 
     order = ['id', 'ASC'];
     limit = 5;
     offset = 0;
@@ -13,14 +13,14 @@ class SectionController {
         try{
             if (where) {
                 let parsedJSON = JSON.parse(where);
-                let preparedSQLQuery = SQL
-                    .setObjectToConvert(parsedJSON)
-                    .logicalOperatorFromString
+                let whereObjectPrepared = SQL
+                    .setWhereObjectToPrepare(parsedJSON) // GET is always querystring, sequelize requires own 'type'
+                    .whereObjectPrepared // getter
 
-                this.whereObj = preparedSQLQuery;
+                this.whereObject = whereObjectPrepared;
             } 
         }catch(err){
-            console.log(`Error with setWhere: ${err}`);
+            console.error(`Error with setWhere: ${err}`);
             this.whereObj = {};
         }
         
@@ -97,7 +97,7 @@ class SectionController {
     }
 
     get records() {
-        return (async () => await Section.findAll({ where: this.whereObj, offset: this.offset, limit: this.limit, order: [this.order] }) )();
+        return (async () => await Section.findAll({ where: this.whereObject, offset: this.offset, limit: this.limit, order: [this.order] }) )();
     }
 
     constructor(){

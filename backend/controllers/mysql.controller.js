@@ -24,12 +24,12 @@ class SQL {
         })
     }
 
-    setObjectToConvert( objectToConvert ){
+    setWhereObjectToPrepare( objectToConvert ){
         this.objectToConvert = objectToConvert;
         return this;
     }
 
-    get logicalOperatorFromString() {
+    get whereObjectPrepared() {
         let readyObject = this.objectToConvert;
 
         try{
@@ -37,7 +37,6 @@ class SQL {
             const objectKey = Object.keys(this.objectToConvert)[0];
             const lessThan = objectWithOperators['less_than'];
             const greaterThan =  objectWithOperators['greater_than'];
-
 
             if (lessThan) {
                 delete readyObject[objectKey]['less_than'];
@@ -58,11 +57,10 @@ class SQL {
             }
 
         } catch(err) {
-            console.error(`Error with logicalOperatorFromString: ${err}`);
+            console.error(`Error with getter whereObjectPrepared: ${err}`);
             readyObject = {};
         } 
 
-        console.log(readyObject);
         return readyObject;
     }
 
