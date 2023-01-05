@@ -38,24 +38,31 @@ class SQL {
             const lessThan = objectWithOperators['less_than'];
             const greaterThan =  objectWithOperators['greater_than'];
 
-            if (lessThan || greaterThan) {
-                if (lessThan) {
-                    readyObject[objectKey] = {
-                        [Op.lt]: lessThan
-                    }
-                }
-    
-                if (greaterThan) {
-                    readyObject[objectKey] = {
-                        [Op.gt]: greaterThan
-                    }
+
+            if (lessThan) {
+                delete readyObject[objectKey]['less_than'];
+
+                readyObject[objectKey] = {
+                    ...readyObject[objectKey],
+                    [Op.lt]: lessThan
                 }
             }
+
+            if (greaterThan) {
+                delete readyObject[objectKey]['greater_than'];
+
+                readyObject[objectKey] = {
+                    ...readyObject[objectKey],
+                    [Op.gt]: greaterThan
+                }
+            }
+
         } catch(err) {
             console.error(`Error with logicalOperatorFromString: ${err}`);
             readyObject = {};
         } 
 
+        console.log(readyObject);
         return readyObject;
     }
 
