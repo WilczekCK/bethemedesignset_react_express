@@ -1,5 +1,6 @@
 const Editor = require('../models/editor');
 const Section = require('../models/section');
+const SQL = require('./mysql.controller');
 
 class SectionController {
     // variables for getter
@@ -11,7 +12,12 @@ class SectionController {
     setWhere({where}){
         try{
             if (where) {
-                this.whereObj = JSON.parse(where);
+                let parsedJSON = JSON.parse(where);
+                let preparedSQLQuery = SQL
+                    .setObjectToConvert(parsedJSON)
+                    .logicalOperatorFromString
+
+                this.whereObj = preparedSQLQuery;
             } 
         }catch(err){
             console.log(`Error with setWhere: ${err}`);
