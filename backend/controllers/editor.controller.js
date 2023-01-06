@@ -93,17 +93,23 @@ class EditorController {
 
 
     async modify({id, columnName, newValue}){
-        if (!id || !columnName || !newValue) {
-            console.error(`One or more of the fields to modify are missing`);
-            return false;
+        let response = { status:200, content: 'ok' };
+
+        if (!id || !columnName || !newValue || Number.isNaN(parseInt(id))) {
+            response.content = 'One or more of the fields to modify are missing or not correct';
+            response.status = 400;
+
+            console.error(response.content);
+            return response;
         }
 
-        const recordToChange = await Editor.update(
+        const recordsModifiedAmount = await Editor.update(
             { [columnName]:newValue },
             { where: {id}}
         );
             
-        return `Updated ${recordToChange} records`;
+        response.content = `Updated ${recordsModifiedAmount} records`
+        return response;
     }
 
     get records() {

@@ -23,7 +23,7 @@ module.exports = function(app, isAuthorizedToRoute){
         })
         .patch(isAuthorizedToRoute, async (req,res) => {
             const results = await editorController.modify(req.body);
-            res.send(results);
+            res.status(results.status).send(results);
         })
         // PUT is not required here, maybe later.
 }
