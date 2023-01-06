@@ -45,7 +45,7 @@ class EditorController {
     }
 
     setLimit({limit}){
-        if (limit && parseInt(limit) !== NaN) {
+        if (limit ) {
             this.limit = parseInt(limit);
         }
         
@@ -53,7 +53,7 @@ class EditorController {
     }
 
     setOffset({offset}){
-        if (offset && parseInt(offset) !== NaN) {
+        if (offset ) {
             this.offset = parseInt(offset);
         }
 
