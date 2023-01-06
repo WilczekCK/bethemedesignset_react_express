@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["react", "node", "express", "designset", "spa"],
+  "author": "Paweł Wilk",
+  "license": "Apache 2.0 license",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
