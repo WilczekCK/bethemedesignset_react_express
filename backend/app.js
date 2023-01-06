@@ -21,8 +21,8 @@ const isAuthorizedToRoute = (req, res, next) => {
     }
 }    
 
-require('./routes/sections')(app, isAuthorizedToRoute);
-require('./routes/editors')(app, isAuthorizedToRoute);
+require('./routes/sections.route')(app, isAuthorizedToRoute);
+require('./routes/editors.route')(app, isAuthorizedToRoute);
 
 
 module.exports = app;

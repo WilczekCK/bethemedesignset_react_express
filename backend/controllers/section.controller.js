@@ -1,4 +1,3 @@
-const Editor = require('../models/editor');
 const Section = require('../models/section');
 const SQL = require('./mysql.controller');
 
