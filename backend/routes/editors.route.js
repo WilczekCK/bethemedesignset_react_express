@@ -19,7 +19,7 @@ module.exports = function(app, isAuthorizedToRoute){
         })
         .delete(isAuthorizedToRoute, async (req,res) => {
             const results = await editorController.remove(req.body);
-            res.send(results);
+            res.status(results.status).send(results);
         })
         .patch(isAuthorizedToRoute, async (req,res) => {
             const results = await editorController.modify(req.body);

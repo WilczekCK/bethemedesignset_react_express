@@ -66,7 +66,7 @@ class EditorController {
         if( !name || !company_name ) {
             response.content = 'One of the values are missing';
             response.status = 400;
-            
+
             console.error(response.content);
             return response;
         }
@@ -76,13 +76,19 @@ class EditorController {
     }
 
     async remove({id}){
-        if (!id && parseInt(id) !== NaN) {
-            console.error(`ID to remove is missing`);
-            return false;
+        let response = { status:200, content: 'ok' };
+
+        if (!id || Number.isNaN(parseInt(id))) {
+            response.content = 'ID to remove is missing';
+            response.status = 400;
+            
+            console.error(response.content);
+            return response;
         }
 
-        const editor = await Editor.destroy({where: {id: parseInt(id)}});
-        return `Removed ${editor} records`;
+        const recordsRemovedAmount = await Editor.destroy({where: {id: parseInt(id)}});
+        response.content = `Removed ${recordsRemovedAmount} records`;
+        return response;
     }
 
 
