@@ -12,7 +12,5 @@ module.exports = function(app, isAuthorizedToRoute){
         .patch(isAuthorizedToRoute, (req,res) => {
             res.send('PATCH route');
         })
-        .put(isAuthorizedToRoute, (req,res) => {
-            res.send('PUT route');
-        })
+        // PUT is not required here, maybe later.
 }

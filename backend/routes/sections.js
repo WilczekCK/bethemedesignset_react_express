@@ -25,7 +25,5 @@ module.exports = function(app, isAuthorizedToRoute){
             const results = await sectionController.modify(req.body);
             res.send(results);
         })
-        .put(isAuthorizedToRoute, (req,res) => {
-            res.send('PUT route');
-        })
+        // PUT is not required here, maybe later.
 }
