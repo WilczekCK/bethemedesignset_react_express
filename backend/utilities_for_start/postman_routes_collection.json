@@ -1,0 +1,331 @@
+{
+	"info": {
+		"_postman_id": "824f52ef-48aa-4d89-9f80-781e79ab3747",
+		"name": "BeDesignSet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sections",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret_key\": \"github_key_will_be_different_for_prod\",\n    \"editor_id\": 2,\n    \"description\": \"Simple section divided 50%/50%\",\n    \"code\": \"{/where/}\",\n    \"category\": \"Builder\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/sections",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show without logical operator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/sections?where={\"editor_id\":2}&order=id,ASC&limit=10&offset=0",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sections"
+							],
+							"query": [
+								{
+									"key": "where",
+									"value": "{\"editor_id\":2}"
+								},
+								{
+									"key": "order",
+									"value": "id,ASC"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show with logical operator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/sections?where={\"id\": {\"less_than\": 10, \"greater_than\": 1}}&order=id,DESC&limit=2&offset=0",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sections"
+							],
+							"query": [
+								{
+									"key": "where",
+									"value": "{\"id\": {\"less_than\": 10, \"greater_than\": 1}}"
+								},
+								{
+									"key": "order",
+									"value": "id,DESC"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update single value",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret_key\": \"github_key_will_be_different_for_prod\",\n    \"id\": 6,\n    \"columnName\": \"code\",\n    \"newValue\": \"{bgColor:'red'}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/sections",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret_key\": \"github_key_will_be_different_for_prod\",\n    \"id\": \"5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/sections",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sections"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Editors",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret_key\": \"github_key_will_be_different_for_prod\",\n    \"name\": \"John Doe\",\n    \"company_name\": \"Microsoft\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/editors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"editors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show without logical operator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/editors?where={\"id\":1}&order=id,ASC&limit=2&offset=0",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"editors"
+							],
+							"query": [
+								{
+									"key": "where",
+									"value": "{\"id\":1}"
+								},
+								{
+									"key": "order",
+									"value": "id,ASC"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show with logical operator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/editors?where={\"id\": {\"less_than\": 10, \"greater_than\": 1}}&order=id,DESC&limit=2&offset=0",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"editors"
+							],
+							"query": [
+								{
+									"key": "where",
+									"value": "{\"id\": {\"less_than\": 10, \"greater_than\": 1}}"
+								},
+								{
+									"key": "order",
+									"value": "id,DESC"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update single value",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret_key\": \"github_key_will_be_different_for_prod\",\n    \"id\": 1,\n    \"columnName\": \"company_name\",\n    \"newValue\": \"Freelancing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/editors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"editors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"secret_key\": \"github_key_will_be_different_for_prod\",\n    \"id\": \"5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/editors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"editors"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
