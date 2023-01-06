@@ -45,7 +45,7 @@ class EditorController {
     }
 
     setLimit({limit}){
-        if (limit ) {
+        if ( Number.isInteger(limit) ) {
             this.limit = parseInt(limit);
         }
         
@@ -53,7 +53,7 @@ class EditorController {
     }
 
     setOffset({offset}){
-        if (offset ) {
+        if ( Number.isInteger(offset) ) {
             this.offset = parseInt(offset);
         }
 

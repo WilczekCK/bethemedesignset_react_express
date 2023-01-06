@@ -45,7 +45,7 @@ class SectionController {
     }
 
     setLimit({limit}){
-        if (limit && parseInt(limit) !== NaN) {
+        if (Number.isInteger(limit)) {
             this.limit = parseInt(limit);
         }
         
@@ -53,7 +53,7 @@ class SectionController {
     }
 
     setOffset({offset}){
-        if (offset && parseInt(offset) !== NaN) {
+        if (Number.isInteger(offset)) {
             this.offset = parseInt(offset);
         }
 
@@ -61,7 +61,7 @@ class SectionController {
     }
 
     async create({editor_id, description, code, category}){
-        if( !editor_id || !description || !code || !category ) {
+        if( !editor_id || !description || !code || !category || Number.isNaN(parseInt(editor_id)) ) {
             console.error(`One of the values are missing`);
             return false;
         }
@@ -71,7 +71,7 @@ class SectionController {
     }
 
     async remove({id}){
-        if (!id && parseInt(id) !== NaN) {
+        if (!id || Number.isNaN(parseInt(id))) {
             console.error(`ID to remove is missing`);
             return false;
         }
@@ -82,7 +82,7 @@ class SectionController {
 
 
     async modify({id, columnName, newValue}){
-        if (!id || !columnName || !newValue) {
+        if (!id || !columnName || !newValue || Number.isNaN(parseInt(id))) {
             console.error(`One or more of the fields to modify are missing`);
             return false;
         }
