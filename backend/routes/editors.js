@@ -1,16 +1,29 @@
+
 module.exports = function(app, isAuthorizedToRoute){
+    const editorController = require('../controllers/editor.controller');
+
     app.route('/editors')
-        .get((req, res) => {
-            res.send('GET route');
+        .get(async (req, res) => {
+            const results = await editorController
+                .setWhere(req.query)
+                .setOrder(req.query)
+                .setLimit(req.query)
+                .setOffset(req.query)
+                .records;
+            
+            res.send( results );
         })
-        .post(isAuthorizedToRoute, (req,res) => {
-            res.send('POST route');
+        .post(isAuthorizedToRoute, async (req,res) => {
+            const results = await editorController.create(req.body);
+            res.send(results);
         })
-        .delete(isAuthorizedToRoute, (req,res) => {
-            res.send('DELETE route');
+        .delete(isAuthorizedToRoute, async (req,res) => {
+            const results = await editorController.remove(req.body);
+            res.send(results);
         })
-        .patch(isAuthorizedToRoute, (req,res) => {
-            res.send('PATCH route');
+        .patch(isAuthorizedToRoute, async (req,res) => {
+            const results = await editorController.modify(req.body);
+            res.send(results);
         })
         // PUT is not required here, maybe later.
 }
