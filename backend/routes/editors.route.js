@@ -15,7 +15,7 @@ module.exports = function(app, isAuthorizedToRoute){
         })
         .post(isAuthorizedToRoute, async (req,res) => {
             const results = await editorController.create(req.body);
-            res.send(results);
+            res.status(results.status).send(results);
         })
         .delete(isAuthorizedToRoute, async (req,res) => {
             const results = await editorController.remove(req.body);

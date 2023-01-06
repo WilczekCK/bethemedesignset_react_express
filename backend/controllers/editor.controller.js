@@ -61,13 +61,18 @@ class EditorController {
     }
 
     async create({name, company_name}){
+        let response = { status:200, content: 'ok' };
+
         if( !name || !company_name ) {
-            console.error(`One of the values are missing`);
-            return false;
+            response.content = 'One of the values are missing';
+            response.status = 400;
+            
+            console.error(response.content);
+            return response;
         }
 
-        const newEditor = await Editor.create({name, company_name});
-        return newEditor;
+        response.content = await Editor.create({name, company_name});
+        return response;
     }
 
     async remove({id}){
