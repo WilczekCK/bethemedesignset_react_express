@@ -61,38 +61,55 @@ class SectionController {
     }
 
     async create({editor_id, description, code, category}){
+        let response = { status:200, content: 'ok' };
+
         if( !editor_id || !description || !code || !category || Number.isNaN(parseInt(editor_id)) ) {
-            console.error(`One of the values are missing`);
-            return false;
+            response.content = 'One of the values are missing';
+            response.status = 400;
+
+            console.error(response.content);
+            return response;
         }
 
-        const section = await Section.create({editor_id, description, code, category});
-        return section;
+        response.content = await Section.create({editor_id, description, code, category});
+        return response;
     }
 
     async remove({id}){
+        let response = { status:200, content: 'ok' };
+
         if (!id || Number.isNaN(parseInt(id))) {
-            console.error(`ID to remove is missing`);
-            return false;
+            response.content = 'ID to remove is missing';
+            response.status = 400;
+            
+            console.error(response.content);
+            return response;
         }
 
-        const section = await Section.destroy({where: {id: parseInt(id)}});
-        return `Removed ${section} records`;
+        const recordsRemovedAmount = await Section.destroy({where: {id: parseInt(id)}});
+        response.content = `Removed ${recordsRemovedAmount} records`;
+        return response;
     }
 
 
     async modify({id, columnName, newValue}){
+        let response = { status:200, content: 'ok' };
+
         if (!id || !columnName || !newValue || Number.isNaN(parseInt(id))) {
-            console.error(`One or more of the fields to modify are missing`);
-            return false;
+            response.content = 'One or more of the fields to modify are missing or not correct';
+            response.status = 400;
+
+            console.error(response.content);
+            return response;
         }
 
-        const recordToChange = await Section.update(
+        const recordsModifiedAmount = await Section.update(
             { [columnName]:newValue },
             { where: {id}}
         );
             
-        return `Updated ${recordToChange} records`;
+        response.content = `Updated ${recordsModifiedAmount} records`
+        return response;
     }
 
     get records() {
