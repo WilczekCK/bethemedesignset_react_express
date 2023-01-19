@@ -36,9 +36,9 @@ class SQL {
             const objectWithOperators = Object.values(this.objectToConvert)[0];
             const objectKey = Object.keys(this.objectToConvert)[0];
             const lessThan = objectWithOperators['less_than'];
-            const greaterThan =  objectWithOperators['greater_than'];
-
-            if (lessThan) {
+            const greaterThan = objectWithOperators['greater_than'];
+            
+            if (Number.isInteger(greaterThan)) {
                 delete readyObject[objectKey]['less_than'];
 
                 readyObject[objectKey] = {
@@ -47,7 +47,7 @@ class SQL {
                 }
             }
 
-            if (greaterThan) {
+            if (Number.isInteger(greaterThan)) {
                 delete readyObject[objectKey]['greater_than'];
 
                 readyObject[objectKey] = {
@@ -60,6 +60,7 @@ class SQL {
             console.error(`Error with getter whereObjectPrepared: ${err}`);
             readyObject = {};
         } 
+
 
         return readyObject;
     }

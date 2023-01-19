@@ -45,7 +45,7 @@ class EditorController {
     }
 
     setLimit({limit}){
-        if (limit && parseInt(limit) !== NaN) {
+        if ( Number.isInteger(limit) ) {
             this.limit = parseInt(limit);
         }
         
@@ -53,7 +53,7 @@ class EditorController {
     }
 
     setOffset({offset}){
-        if (offset && parseInt(offset) !== NaN) {
+        if ( Number.isInteger(offset) ) {
             this.offset = parseInt(offset);
         }
 
@@ -61,38 +61,55 @@ class EditorController {
     }
 
     async create({name, company_name}){
+        let response = { status:200, content: 'ok' };
+
         if( !name || !company_name ) {
-            console.error(`One of the values are missing`);
-            return false;
+            response.content = 'One of the values are missing';
+            response.status = 400;
+
+            console.error(response.content);
+            return response;
         }
 
-        const newEditor = await Editor.create({name, company_name});
-        return newEditor;
+        response.content = await Editor.create({name, company_name});
+        return response;
     }
 
     async remove({id}){
-        if (!id && parseInt(id) !== NaN) {
-            console.error(`ID to remove is missing`);
-            return false;
+        let response = { status:200, content: 'ok' };
+
+        if (!id || Number.isNaN(parseInt(id))) {
+            response.content = 'ID to remove is missing';
+            response.status = 400;
+            
+            console.error(response.content);
+            return response;
         }
 
-        const editor = await Editor.destroy({where: {id: parseInt(id)}});
-        return `Removed ${editor} records`;
+        const recordsRemovedAmount = await Editor.destroy({where: {id: parseInt(id)}});
+        response.content = `Removed ${recordsRemovedAmount} records`;
+        return response;
     }
 
 
     async modify({id, columnName, newValue}){
-        if (!id || !columnName || !newValue) {
-            console.error(`One or more of the fields to modify are missing`);
-            return false;
+        let response = { status:200, content: 'ok' };
+
+        if (!id || !columnName || !newValue || Number.isNaN(parseInt(id))) {
+            response.content = 'One or more of the fields to modify are missing or not correct';
+            response.status = 400;
+
+            console.error(response.content);
+            return response;
         }
 
-        const recordToChange = await Editor.update(
+        const recordsModifiedAmount = await Editor.update(
             { [columnName]:newValue },
             { where: {id}}
         );
             
-        return `Updated ${recordToChange} records`;
+        response.content = `Updated ${recordsModifiedAmount} records`
+        return response;
     }
 
     get records() {
