@@ -37,4 +37,14 @@ module.exports = function(app, isAuthorizedToRoute){
             res.status(results.status).send(results);
         })
         // PUT is not required here, maybe later.
+
+    app.route('/editors/:id')
+        .get(async (req, res) => {
+            const results = await editorController
+            .setWhere( {where: {id: req.params.id}} )
+            .records;
+
+            res.status( results.status || 200)
+            .send( results );
+        })
 }

@@ -11,7 +11,7 @@ class SectionController {
     setWhere({where}){
         try{
             if ( typeof where === 'object' ) {
-                where = JSON.stringify(where)
+                where = JSON.stringify(where);
             }
 
             if (where) {

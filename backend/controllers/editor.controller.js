@@ -10,6 +10,10 @@ class EditorController {
 
     setWhere({where}){
         try{
+            if ( typeof where === 'object' ) {
+                where = JSON.stringify(where);
+            }
+
             if (where) {
                 let parsedJSON = JSON.parse(where);
                 let whereObjectPrepared = SQL
