@@ -12,7 +12,7 @@ module.exports = function(app, isAuthorizedToRoute){
                 .setOffset(req.query)
                 .records;
             
-                res.status( results.status )
+                res.status( results.status || 200)
                 .send( results );
             } catch(err) {
                 res.status(400)
@@ -41,12 +41,11 @@ module.exports = function(app, isAuthorizedToRoute){
 
     app.route('/sections/:id')
         .get(async (req, res) => {
-            const { id } = req.params;
-            
             const results = await sectionController
-            .setWhere(id)
+            .setWhere( {where: {id: req.params.id}} )
             .records;
 
-            console.log(results);
+            res.status( results.status || 200)
+            .send( results );
         })
 }

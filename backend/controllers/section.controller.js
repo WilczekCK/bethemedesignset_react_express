@@ -10,6 +10,10 @@ class SectionController {
 
     setWhere({where}){
         try{
+            if ( typeof where === 'object' ) {
+                where = JSON.stringify(where)
+            }
+
             if (where) {
                 let parsedJSON = JSON.parse(where);
                 let whereObjectPrepared = SQL
@@ -113,6 +117,7 @@ class SectionController {
     }
 
     get records() {
+        // make restful api responses here and in editor contoller!
         return (async () => await Section.findAll({ where: this.whereObject, offset: this.offset, limit: this.limit, order: [this.order] }) )();
     }
 
