@@ -4,7 +4,7 @@ module.exports = function(app, isAuthorizedToRoute){
 
     app.route('/sections')
         .get(async (req, res) => {
-            try{
+            try {
                 const results = await sectionController
                 .setWhere(req.query)
                 .setOrder(req.query)
@@ -14,7 +14,7 @@ module.exports = function(app, isAuthorizedToRoute){
             
                 res.status( results.status )
                 .send( results );
-            }catch(err){
+            } catch(err) {
                 res.status(400)
                 .send({
                     status: 400,
