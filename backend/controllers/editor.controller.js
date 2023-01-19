@@ -8,7 +8,7 @@ class EditorController {
     limit = 5;
     offset = 0;
 
-    setWhere({where}){
+    setWhere( {where} ){
         try{
             if ( typeof where === 'object' ) {
                 where = JSON.stringify(where);
@@ -49,7 +49,7 @@ class EditorController {
     }
 
     setLimit({limit}){
-        if ( Number.isInteger(limit) ) {
+        if (!Number.isNaN(parseInt(limit))) {
             this.limit = parseInt(limit);
         }
         
@@ -57,7 +57,7 @@ class EditorController {
     }
 
     setOffset({offset}){
-        if ( Number.isInteger(offset) ) {
+        if (!Number.isNaN(parseInt(limit))) {
             this.offset = parseInt(offset);
         }
 

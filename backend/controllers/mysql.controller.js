@@ -35,6 +35,7 @@ class SQL {
         try{
             const objectWithOperators = Object.values(this.objectToConvert)[0];
             const objectKey = Object.keys(this.objectToConvert)[0];
+
             const lessThan = objectWithOperators['less_than'];
             const greaterThan = objectWithOperators['greater_than'];
             
