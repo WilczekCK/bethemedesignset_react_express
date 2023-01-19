@@ -37,4 +37,16 @@ module.exports = function(app, isAuthorizedToRoute){
             res.status(results.status).send(results);
         })
         // PUT is not required here, maybe later.
+
+
+    app.route('/sections/:id')
+        .get(async (req, res) => {
+            const { id } = req.params;
+            
+            const results = await sectionController
+            .setWhere(id)
+            .records;
+
+            console.log(results);
+        })
 }
