@@ -4,26 +4,37 @@ module.exports = function(app, isAuthorizedToRoute){
 
     app.route('/sections')
         .get(async (req, res) => {
-            const results = await sectionController
+            try{
+                const results = await sectionController
                 .setWhere(req.query)
                 .setOrder(req.query)
                 .setLimit(req.query)
                 .setOffset(req.query)
                 .records;
             
-            res.send( results );
+                res.status( results.status )
+                .send( results );
+            }catch(err){
+                res.status(400)
+                .send({
+                    status: 400,
+                    content: {
+                        message: err.message
+                    }
+                });
+            }
         })
         .post(isAuthorizedToRoute, async (req,res) => {
             const results = await sectionController.create(req.body);
-            res.send(results);
+            res.status(results.status).send(results);
         })
         .delete(isAuthorizedToRoute, async (req,res) => {
             const results = await sectionController.remove(req.body);
-            res.send(results);
+            res.status(results.status).send(results);
         })
         .patch(isAuthorizedToRoute, async (req,res) => {
             const results = await sectionController.modify(req.body);
-            res.send(results);
+            res.status(results.status).send(results);
         })
         // PUT is not required here, maybe later.
 }

@@ -4,6 +4,7 @@ module.exports = function(app, isAuthorizedToRoute){
 
     app.route('/editors')
         .get(async (req, res) => {
+            try{
             const results = await editorController
                 .setWhere(req.query)
                 .setOrder(req.query)
@@ -11,7 +12,17 @@ module.exports = function(app, isAuthorizedToRoute){
                 .setOffset(req.query)
                 .records;
             
-            res.send( results );
+            res.status( results.status )
+            .send( results );
+        }catch(err){
+            res.status(400)
+            .send({
+                status: 400,
+                content: {
+                    message: err.message
+                }
+            });
+        }
         })
         .post(isAuthorizedToRoute, async (req,res) => {
             const results = await editorController.create(req.body);
