@@ -10,6 +10,10 @@ class EditorController {
 
     setWhere({where}){
         try{
+            if ( typeof where === 'object' ) {
+                where = JSON.stringify(where);
+            }
+
             if (where) {
                 let parsedJSON = JSON.parse(where);
                 let whereObjectPrepared = SQL
@@ -45,7 +49,7 @@ class EditorController {
     }
 
     setLimit({limit}){
-        if ( Number.isInteger(limit) ) {
+        if (!Number.isNaN(parseInt(limit))) {
             this.limit = parseInt(limit);
         }
         
@@ -53,7 +57,7 @@ class EditorController {
     }
 
     setOffset({offset}){
-        if ( Number.isInteger(offset) ) {
+        if (!Number.isNaN(parseInt(offset))) {
             this.offset = parseInt(offset);
         }
 
