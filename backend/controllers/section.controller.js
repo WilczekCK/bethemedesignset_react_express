@@ -49,7 +49,7 @@ class SectionController {
     }
 
     setLimit({limit}){
-        if (Number.isInteger(limit)) {
+        if (!Number.isNaN(parseInt(limit))) {
             this.limit = parseInt(limit);
         }
         
@@ -57,7 +57,7 @@ class SectionController {
     }
 
     setOffset({offset}){
-        if (Number.isInteger(offset)) {
+        if (!Number.isNaN(parseInt(offset))) {
             this.offset = parseInt(offset);
         }
 
