@@ -29,7 +29,15 @@ const Section = connection.define('sections', {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-
+    isPublished: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+    },
+    linkToPreview: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    }
     // Remember, sequelize is adding createdAt and updatedAt!
 })
 
