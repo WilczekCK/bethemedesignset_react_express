@@ -2,7 +2,7 @@
 module.exports = function(app, isAuthorizedToRoute){
     const sectionController = require('../controllers/section.controller');
 
-    app.route('/sections')
+    app.route(['/sections', '/sections/:id'])
         .get(async (req, res) => {
             try {
                 const results = await sectionController
@@ -25,27 +25,16 @@ module.exports = function(app, isAuthorizedToRoute){
             }
         })
         .post(isAuthorizedToRoute, async (req,res) => {
-            const results = await sectionController.create(req.body);
+            const results = await sectionController.create({...req.body, ...req.params});
             res.status(results.status).send(results);
         })
         .delete(isAuthorizedToRoute, async (req,res) => {
-            const results = await sectionController.remove(req.body);
+            const results = await sectionController.remove({...req.body, ...req.params});
             res.status(results.status).send(results);
         })
         .patch(isAuthorizedToRoute, async (req,res) => {
-            const results = await sectionController.modify(req.body);
+            const results = await sectionController.modify({...req.body, ...req.params});
             res.status(results.status).send(results);
         })
         // PUT is not required here, maybe later.
-
-
-    app.route('/sections/:id')
-        .get(async (req, res) => {
-            const results = await sectionController
-            .setWhere( {where: {id: req.params.id}} )
-            .records;
-
-            res.status( results.status || 200)
-            .send( results );
-        })
 }

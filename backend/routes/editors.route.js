@@ -25,15 +25,15 @@ module.exports = function(app, isAuthorizedToRoute){
             }
         })
         .post(isAuthorizedToRoute, async (req,res) => {
-            const results = await editorController.create(req.body);
+            const results = await editorController.create({...req.body, ...req.params});
             res.status(results.status).send(results);
         })
         .delete(isAuthorizedToRoute, async (req,res) => {
-            const results = await editorController.remove(req.body);
+            const results = await editorController.remove({...req.body, ...req.params});
             res.status(results.status).send(results);
         })
         .patch(isAuthorizedToRoute, async (req,res) => {
-            const results = await editorController.modify(req.body);
+            const results = await editorController.modify({...req.body, ...req.params});
             res.status(results.status).send(results);
         })
         // PUT is not required here, maybe later.
