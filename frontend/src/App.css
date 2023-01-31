@@ -12,6 +12,10 @@
   --buttonBg: #5388BE;
 }
 
+html body{
+  background:var(--backgroundGrey);
+}
+
 .App {
   text-align: center;
 }
