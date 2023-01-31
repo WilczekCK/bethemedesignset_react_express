@@ -15,12 +15,24 @@ const Item = styled(Paper)(({ }) => ({
   boxShadow: 'none',
 }));
 
+const Logo = styled(Paper)(({ }) => ({
+    backgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundImage: 'var(--gradientBe)',
+    boxShadow: 'none',
+    fontWeight: 700,
+    fontSize:'20px'
+}));
+
 function NavBar(){
   return (
         <Grid2 container backgroundColor="var(--backgroundDarkerGrey)" minHeight={90} md={12} display="flex" alignContent="center">
             <Grid2 container md={1} mdOffset={1} xsOffset={.5}>
-                <Link to="/"> 
-                    <Item>BETHEME<br/><small>DesignSet</small></Item> 
+                <Link to="/" style={{textAlign: 'left', fontWeight: 700}}> 
+                    <Logo>BeTheme</Logo>
+                    <Item>
+                        Design Set
+                    </Item>
                 </Link>
             </Grid2>
             

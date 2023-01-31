@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/montserrat');
+
 :root {
   --backgroundGrey: #343134;
   --backgroundDarkerGrey: #202021;
@@ -7,13 +9,15 @@
   --textGrey: #9F9F9F;
   --textDarkerGrey: #353537;
 
-  --gradientBe: linear-gradient(40.73deg, #0089F7 10.04%, #06A8FB 65.19%, #0DC7FF 120.34%);
+  --gradientBe: -webkit-linear-gradient(40.73deg, #0089F7 10.04%, #06A8FB 65.19%, #0DC7FF 120.34%);
 
   --buttonBg: #5388BE;
 }
 
 html body{
   background:var(--backgroundGrey);
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
 }
 
 .App {
