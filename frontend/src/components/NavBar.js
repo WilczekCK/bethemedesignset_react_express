@@ -4,47 +4,61 @@ import Paper from '@mui/material/Paper';
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import { Link } from "react-router-dom";
 
+import FacebookIcon from '@mui/icons-material/Facebook';
+
+
 const Item = styled(Paper)(({ }) => ({
   textAlign: 'center',
   color: 'white',
   textDecoration: 'none',
-  backgroundColor: 'transparent'
+  backgroundColor: 'transparent',
+  boxShadow: 'none',
 }));
 
 function NavBar(){
   return (
-        <Grid2 container backgroundColor="var(--backgroundDarkerGrey)" minHeight={100} md={12} display="flex" alignContent="center">
+        <Grid2 container backgroundColor="var(--backgroundDarkerGrey)" minHeight={90} md={12} display="flex" alignContent="center">
             <Grid2 container md={1} mdOffset={1} xsOffset={.5}>
-                <Link to="/"> LOGO </Link>
+                <Link to="/"> 
+                    <Item>BETHEME<br/><small>DesignSet</small></Item> 
+                </Link>
             </Grid2>
             
-            <Grid2 container md={8} xs={8} padding="0px 50px">
-                    <Grid2 xs={3} md={3}>
-                        <Link to="/library"> Library </Link>
+            <Grid2 container md={8} xs={7} display="flex" justifyContent="center" alignContent="center">
+                    <Grid2 xs={3} md={2}>
+                        <Link to="/library"> 
+                            <Item>Library</Item>
+                        </Link>
                     </Grid2>
                 
-                    <Grid2 xs={3} md={3}>
-                        <Link to="/about"> About </Link>
+                    <Grid2 xs={3} md={2}>
+                        <Link to="/about"> 
+                            <Item>About</Item>
+                        </Link>
                     </Grid2>
 
-                    <Grid2 xs={3} md={3}>
-                        <Link to="/halloffame"> Hall of Fame </Link>
+                    <Grid2 xs={3} md={2}>
+                        <Link to="/halloffame"> 
+                            <Item>Hall of Fame</Item>
+                        </Link>
                     </Grid2>
 
-                    <Grid2 xs={3} md={3}>
-                        <Link to="/instructions"> Instructions </Link>
+                    <Grid2 xs={3} md={2}>
+                        <Link to="/instructions"> 
+                            <Item>Instructions</Item>
+                        </Link>
                     </Grid2>
             </Grid2> 
 
-            <Grid2 container md={1} mdOffset={0} xsOffset={.5}>
+            <Grid2 container md={1} mdOffset={0} xsOffset={.5} display="flex" justifyContent="center" alignContent="center">
                 <Grid2 md={4}>
-                        <Link to="#"> S1 </Link>
+                    <FacebookIcon fontSize="large" color="primary"/>
                 </Grid2>
                 <Grid2 md={4}>
-                        <Link to="#"> S2 </Link>
-                    </Grid2>
+                    <FacebookIcon fontSize="large" color="primary"/>
+                </Grid2>
                 <Grid2 md={4}>
-                        <Link to="#"> S3 </Link>
+                    <FacebookIcon fontSize="large" color="primary"/>
                 </Grid2>
             </Grid2>
         </Grid2>
