@@ -6,11 +6,8 @@ import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import { Link } from "react-router-dom";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import MenuIcon from '@mui/icons-material/Menu';
-
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button';
-
 import useResponsiveDetect from '../hooks/useResponsiveDetect'
 
 const Item = styled(Paper)(({ }) => ({
@@ -19,8 +16,15 @@ const Item = styled(Paper)(({ }) => ({
   textDecoration: 'none',
   backgroundColor: 'transparent',
   boxShadow: 'none',
+  '&:hover': {
+    backgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundImage: 'var(--gradientBe)',
+    boxShadow: 'none',
+    textAlign: 'center',
+    transition: 'all .3s ease-in-out'
+  }
 }));
-
 
 const ItemMobile = styled(Paper)(({ }) => ({
     textAlign: 'center',
@@ -28,7 +32,15 @@ const ItemMobile = styled(Paper)(({ }) => ({
     textDecoration: 'none',
     backgroundColor: 'transparent',
     boxShadow: 'none',
-    padding: '10px 20px'
+    padding: '10px 20px',
+    '&:hover': {
+        backgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundImage: 'var(--gradientBe)',
+        boxShadow: 'none',
+        textAlign: 'center',
+        transition: 'all .3s ease-in-out'
+      }
 }));
 
 const Logo = styled(Paper)(({ }) => ({
