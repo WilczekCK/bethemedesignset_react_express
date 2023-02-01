@@ -21,16 +21,17 @@ const Logo = styled(Paper)(({ }) => ({
     backgroundImage: 'var(--gradientBe)',
     boxShadow: 'none',
     fontWeight: 700,
-    fontSize:'20px'
+    fontSize:'32px',
+    textAlign: 'center'
 }));
 
 function NavBar(){
   return (
         <Grid2 container backgroundColor="var(--backgroundDarkerGrey)" minHeight={90} md={12} display="flex" alignContent="center">
             <Grid2 container md={1} mdOffset={1} xsOffset={.5}>
-                <Link to="/" style={{textAlign: 'left', fontWeight: 700}}> 
-                    <Logo>BeTheme</Logo>
-                    <Item>
+                <Link to="/" style={{fontWeight: 700, textDecoration: 'none'}}> 
+                    <Logo>Be</Logo>
+                    <Item style={{marginTop: '-5px'}}>
                         Design Set
                     </Item>
                 </Link>
@@ -38,26 +39,26 @@ function NavBar(){
             
             <Grid2 container md={8} xs={7} display="flex" justifyContent="center" alignContent="center">
                     <Grid2 xs={3} md={2}>
-                        <Link to="/library"> 
+                        <Link to="/library" style={{textDecoration: 'none'}}> 
                             <Item>Library</Item>
-                        </Link>
-                    </Grid2>
-                
-                    <Grid2 xs={3} md={2}>
-                        <Link to="/about"> 
-                            <Item>About</Item>
                         </Link>
                     </Grid2>
 
                     <Grid2 xs={3} md={2}>
-                        <Link to="/halloffame"> 
+                        <Link to="/halloffame" style={{textDecoration: 'none'}}> 
                             <Item>Hall of Fame</Item>
                         </Link>
                     </Grid2>
 
                     <Grid2 xs={3} md={2}>
-                        <Link to="/instructions"> 
+                        <Link to="/instructions" style={{textDecoration: 'none'}}> 
                             <Item>Instructions</Item>
+                        </Link>
+                    </Grid2>
+
+                    <Grid2 xs={3} md={2}>
+                        <Link to="/about" style={{textDecoration: 'none'}}> 
+                            <Item>About</Item>
                         </Link>
                     </Grid2>
             </Grid2> 
