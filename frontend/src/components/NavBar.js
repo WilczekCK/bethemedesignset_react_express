@@ -63,9 +63,9 @@ function MobileMenu(){
     };
   
     return (
-        <Grid2 container md={5} sm={5} xs={5} xsOffset={.5} direction="row-reverse">
+        <Grid2 container md={8} sm={6} xs={6} xsOffset={1} direction="row-reverse">
             <Button
-            id="basic-button"
+            id="hamburger-menu-button"
             aria-controls={open ? 'basic-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
@@ -74,12 +74,12 @@ function MobileMenu(){
             <MenuIcon />
             </Button>
             <Menu
-            id="basic-menu"
+            id="hamburger-menu"
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
             MenuListProps={{
-                'aria-labelledby': 'basic-button',
+                'aria-labelledby': 'hamburger-menu-button',
             }}
             >
             <Link style={{textDecoration: 'none'}} to="/library"  onClick={handleClose}><ItemMobile>Library</ItemMobile></Link>
@@ -93,43 +93,43 @@ function MobileMenu(){
 
 function DesktopMenu(){
     return (
-        <Grid2 container md={6} xs={4}>
-            <Grid2 container  md={6} justifyContent="center" alignContent="center">
-                        <Grid2 xs={3} md={3}>
-                            <Link to="/library" style={{textDecoration: 'none'}}> 
-                                <Item>Library</Item>
-                            </Link>
-                        </Grid2>
+        <Grid2 container md={8} xs={8}>
+            <Grid2 container md={9} justifyContent="center" alignContent="center">
+                <Grid2 xs={3} md={3}>
+                    <Link to="/library" style={{textDecoration: 'none'}}> 
+                        <Item>Library</Item>
+                    </Link>
+                </Grid2>
 
-                        <Grid2 xs={3} md={3}>
-                            <Link to="/halloffame" style={{textDecoration: 'none'}}> 
-                                <Item>Hall of Fame</Item>
-                            </Link>
-                        </Grid2>
+                <Grid2 xs={3} md={3}>
+                    <Link to="/halloffame" style={{textDecoration: 'none'}}> 
+                        <Item>Hall of Fame</Item>
+                    </Link>
+                </Grid2>
 
-                        <Grid2 xs={3} md={3}>
-                            <Link to="/instructions" style={{textDecoration: 'none'}}> 
-                                <Item>Instructions</Item>
-                            </Link>
-                        </Grid2>
+                <Grid2 xs={3} md={3}>
+                    <Link to="/instructions" style={{textDecoration: 'none'}}> 
+                        <Item>Instructions</Item>
+                    </Link>
+                </Grid2>
 
-                        <Grid2 xs={3} md={3}>
-                            <Link to="/about" style={{textDecoration: 'none'}}> 
-                                <Item>About</Item>
-                            </Link>
-                        </Grid2>
-                </Grid2> 
+                <Grid2 xs={3} md={3}>
+                    <Link to="/about" style={{textDecoration: 'none'}}> 
+                        <Item>About</Item>
+                    </Link>
+                </Grid2>
+            </Grid2> 
 
-                <Grid2 container md={6} mdOffset={1} xsOffset={.5} justifyContent="center" alignContent="center">
-                    <Grid2 md={4}>
-                        <FacebookIcon fontSize="large" color="primary"/>
-                    </Grid2>
-                    <Grid2 md={4}>
-                        <FacebookIcon fontSize="large" color="primary"/>
-                    </Grid2>
-                    <Grid2 md={4}>
-                        <FacebookIcon fontSize="large" color="primary"/>
-                    </Grid2>
+            <Grid2 container md={2} mdOffset={1} xsOffset={.5} justifyContent="center" alignContent="center">
+                <Grid2 md={4}>
+                    <FacebookIcon fontSize="large" color="primary"/>
+                </Grid2>
+                <Grid2 md={4}>
+                    <FacebookIcon fontSize="large" color="primary"/>
+                </Grid2>
+                <Grid2 md={4}>
+                    <FacebookIcon fontSize="large" color="primary"/>
+                </Grid2>
             </Grid2>
         </Grid2>
     )
@@ -144,7 +144,7 @@ function NavBar(){
 
     return (
         <Grid2 container backgroundColor="var(--backgroundDarkerGrey)" minHeight={90} md={12} display="flex" alignContent="center">
-            <Grid2 container md={5} mdOffset={1} xsOffset={1} xs={5}>
+            <Grid2 container md={2} lg={2} xs={4} mdOffset={1} xsOffset={1} >
                 <Link to="/" style={{fontWeight: 700, textDecoration: 'none'}}> 
                     <Logo>Be</Logo>
                     <Item style={{marginTop: '-5px'}}>
