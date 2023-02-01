@@ -63,7 +63,7 @@ function MobileMenu(){
     };
   
     return (
-        <Grid2 container xl={1} md={1} xs={1} xlOffset={8} mdOffset={8} smOffset={6.5} xsOffset={5.5}>
+        <Grid2 container md={5} sm={5} xs={5} xsOffset={.5} direction="row-reverse">
             <Button
             id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}
@@ -93,8 +93,8 @@ function MobileMenu(){
 
 function DesktopMenu(){
     return (
-        <>
-            <Grid2 container md={6} xs={7} justifyContent="center" alignContent="center">
+        <Grid2 container md={6} xs={4}>
+            <Grid2 container  md={6} justifyContent="center" alignContent="center">
                         <Grid2 xs={3} md={3}>
                             <Link to="/library" style={{textDecoration: 'none'}}> 
                                 <Item>Library</Item>
@@ -120,7 +120,7 @@ function DesktopMenu(){
                         </Grid2>
                 </Grid2> 
 
-                <Grid2 container md={1} mdOffset={1} xsOffset={.5} justifyContent="center" alignContent="center">
+                <Grid2 container md={6} mdOffset={1} xsOffset={.5} justifyContent="center" alignContent="center">
                     <Grid2 md={4}>
                         <FacebookIcon fontSize="large" color="primary"/>
                     </Grid2>
@@ -131,7 +131,7 @@ function DesktopMenu(){
                         <FacebookIcon fontSize="large" color="primary"/>
                     </Grid2>
             </Grid2>
-        </>
+        </Grid2>
     )
 }
 
@@ -144,7 +144,7 @@ function NavBar(){
 
     return (
         <Grid2 container backgroundColor="var(--backgroundDarkerGrey)" minHeight={90} md={12} display="flex" alignContent="center">
-            <Grid2 container md={2} mdOffset={1} xsOffset={.5} xs={3.5}>
+            <Grid2 container md={5} mdOffset={1} xsOffset={1} xs={5}>
                 <Link to="/" style={{fontWeight: 700, textDecoration: 'none'}}> 
                     <Logo>Be</Logo>
                     <Item style={{marginTop: '-5px'}}>
