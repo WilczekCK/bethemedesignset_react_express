@@ -1,6 +1,6 @@
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import { Link } from "react-router-dom";
-import FacebookIcon from '@mui/icons-material/Facebook';
+import MenuSocial from './MenuSocial'
 
 function Render(){
     return (
@@ -31,17 +31,7 @@ function Render(){
                 </Grid2>
             </Grid2> 
 
-            <Grid2 container md={2} mdOffset={1} xsOffset={.5} justifyContent="center" alignContent="center">
-                <Grid2 md={4}>
-                    <FacebookIcon fontSize="large" color="primary"/>
-                </Grid2>
-                <Grid2 md={4}>
-                    <FacebookIcon fontSize="large" color="primary"/>
-                </Grid2>
-                <Grid2 md={4}>
-                    <FacebookIcon fontSize="large" color="primary"/>
-                </Grid2>
-            </Grid2>
+            <MenuSocial />
         </Grid2>
     )
 }

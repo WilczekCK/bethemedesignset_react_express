@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
+import MenuSocial from './MenuSocial'
 
 const ItemMobile = styled(Paper)(({ }) => ({
     color: 'var(--textDarkerGrey)',
@@ -66,6 +67,8 @@ function Render(){
             <Link to="/about" onClick={handleClose}>
                 <ItemMobile>About</ItemMobile>
             </Link>
+
+            <MenuSocial/>
         </Menu>
     </Grid2>
     );
