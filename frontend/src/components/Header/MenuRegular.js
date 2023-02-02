@@ -5,19 +5,7 @@ import { Link } from "react-router-dom";
 import FacebookIcon from '@mui/icons-material/Facebook';
 
 const Item = styled(Paper)(({ }) => ({
-    textAlign: 'center',
-    color: 'white',
-    textDecoration: 'none',
-    backgroundColor: 'transparent',
-    boxShadow: 'none',
-    '&:hover': {
-      backgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      backgroundImage: 'var(--gradientBe)',
-      boxShadow: 'none',
-      textAlign: 'center',
-      transition: 'all .3s ease-in-out'
-    }
+
   }));
   
 
@@ -27,25 +15,25 @@ function Render(){
             <Grid2 container md={9} justifyContent="center" alignContent="center">
                 <Grid2 xs={3} md={3}>
                     <Link to="/library" style={{textDecoration: 'none'}}> 
-                        <Item>Library</Item>
+                        Library
                     </Link>
                 </Grid2>
 
                 <Grid2 xs={3} md={3}>
                     <Link to="/halloffame" style={{textDecoration: 'none'}}> 
-                        <Item>Hall of Fame</Item>
+                        Hall of Fame
                     </Link>
                 </Grid2>
 
                 <Grid2 xs={3} md={3}>
                     <Link to="/instructions" style={{textDecoration: 'none'}}> 
-                        <Item>Instructions</Item>
+                       Instructions
                     </Link>
                 </Grid2>
 
                 <Grid2 xs={3} md={3}>
                     <Link to="/about" style={{textDecoration: 'none'}}> 
-                        <Item>About</Item>
+                        About
                     </Link>
                 </Grid2>
             </Grid2> 

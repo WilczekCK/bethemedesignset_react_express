@@ -16,24 +16,9 @@ const Logo = styled(Paper)(({ }) => ({
     boxShadow: 'none',
     fontWeight: 700,
     fontSize:'32px',
-    textAlign: 'center'
-}));
-
-const Item = styled(Paper)(({ }) => ({
     textAlign: 'center',
-    color: 'white',
-    textDecoration: 'none',
-    backgroundColor: 'transparent',
-    boxShadow: 'none',
-    '&:hover': {
-      backgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      backgroundImage: 'var(--gradientBe)',
-      boxShadow: 'none',
-      textAlign: 'center',
-      transition: 'all .3s ease-in-out'
-    }
-  }));
+    marginBottom:'-5px'
+}));
 
 function setDeviceOnResize(props) {
     const debounceFn = debounce(() => {
@@ -50,15 +35,12 @@ function NavBar(){
     const [device, setDevice] = useState(devicesAvailable.actualDeviceName); // for DeviceSelectedButtons
     setDeviceOnResize({device, setDevice});
 
-
     return (
         <Grid2 container backgroundColor="var(--backgroundDarkerGrey)" minHeight={90} md={12} display="flex" alignContent="center">
             <Grid2 container md={2} lg={2} xs={4} mdOffset={1} xsOffset={1} >
-                <Link to="/" style={{fontWeight: 700, textDecoration: 'none'}}> 
+                <Link to="/" style={{fontWeight: 700, marginTop:'-5px'}}> 
                     <Logo>Be</Logo>
-                    <Item style={{marginTop: '-5px'}}>
-                        Design Set
-                    </Item>
+                    Design Set
                 </Link>
             </Grid2>
             

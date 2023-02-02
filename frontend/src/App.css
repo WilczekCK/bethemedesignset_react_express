@@ -23,3 +23,18 @@ html body{
 .App {
   text-align: center;
 }
+
+a{    
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+a:hover {
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important; 
+  background-image: var(--gradientBe) !important;
+  transition: all .3s ease-in-out !important;
+}

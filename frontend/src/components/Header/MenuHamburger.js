@@ -8,12 +8,9 @@ import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 
 const ItemMobile = styled(Paper)(({ }) => ({
-    textAlign: 'center',
     color: 'black',
-    textDecoration: 'none',
-    backgroundColor: 'transparent',
-    boxShadow: 'none',
     padding: '10px 20px',
+    boxShadow: 'unset',
     '&:hover': {
         backgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -37,27 +34,38 @@ function Render(){
     return (
         <Grid2 container md={8} sm={6} xs={6} xsOffset={1} direction="row-reverse">
             <Button
-            id="hamburger-menu-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick}
+                id="hamburger-menu-button"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
             >
-            <MenuIcon />
+                <MenuIcon />
             </Button>
+
             <Menu
-            id="hamburger-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-                'aria-labelledby': 'hamburger-menu-button',
-            }}
+                id="hamburger-menu" anchorEl={anchorEl}
+                open={open} onClose={handleClose}
+                MenuListProps={{
+                    'aria-labelledby': 'hamburger-menu-button',
+                }}
             >
-            <Link style={{textDecoration: 'none'}} to="/library"  onClick={handleClose}><ItemMobile>Library</ItemMobile></Link>
-            <Link style={{textDecoration: 'none'}} to="/halloffame" onClick={handleClose}><ItemMobile>Hall of Fame</ItemMobile></Link>
-            <Link style={{textDecoration: 'none'}} to="/instructions"  onClick={handleClose}><ItemMobile>Instructions</ItemMobile></Link>
-            <Link style={{textDecoration: 'none'}} to="/about" onClick={handleClose}><ItemMobile>About</ItemMobile></Link>
+            
+            <Link to="/library"  onClick={handleClose}>
+                <ItemMobile>Library</ItemMobile>
+            </Link>
+            
+            <Link to="/halloffame" onClick={handleClose}>
+                <ItemMobile>Hall of Fame</ItemMobile>
+            </Link>
+            
+            <Link to="/instructions"  onClick={handleClose}>
+                <ItemMobile>Instructions</ItemMobile>
+            </Link>
+
+            <Link to="/about" onClick={handleClose}>
+                <ItemMobile>About</ItemMobile>
+            </Link>
         </Menu>
     </Grid2>
     );
