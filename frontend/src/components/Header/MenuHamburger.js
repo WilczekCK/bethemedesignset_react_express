@@ -68,7 +68,7 @@ function Render(){
                 <ItemMobile>About</ItemMobile>
             </Link>
 
-            <MenuSocial/>
+            <MenuSocial type="hamburger"/>
         </Menu>
     </Grid2>
     );
