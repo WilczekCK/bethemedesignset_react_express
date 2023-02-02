@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import debounce from 'lodash.debounce';
+import React from "react";
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import { Link } from "react-router-dom";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-import useResponsiveDetect from '../../hooks/useResponsiveDetect';
+import rwd from '../../data/responsiveBreakpoints.json';
 import MenuRegular from './MenuRegular'
 import MenuHamburger from './MenuHamburger'
 
@@ -20,20 +20,8 @@ const Logo = styled(Paper)(({ }) => ({
     marginBottom:'-5px'
 }));
 
-function setDeviceOnResize(props) {
-    const debounceFn = debounce(() => {
-      let devicesAvailable = useResponsiveDetect(); 
-      props.setDevice(devicesAvailable.actualDeviceName);
-    }, 100);
-      
-    window.addEventListener('resize', () => debounceFn() );
-    window.removeEventListener('resize', () => debounceFn() );
-}
-
 function NavBar(){
-    let devicesAvailable = useResponsiveDetect();
-    const [device, setDevice] = useState(devicesAvailable.actualDeviceName); // for DeviceSelectedButtons
-    setDeviceOnResize({device, setDevice});
+    const isDesktopResolution = useMediaQuery(`(min-width:${rwd['desktop']})`);
 
     return (
         <Grid2 container backgroundColor="var(--backgroundDarkerGrey)" minHeight={90} md={12} display="flex" alignContent="center">
@@ -44,7 +32,7 @@ function NavBar(){
                 </Link>
             </Grid2>
             
-            {device === 'desktop' ? <MenuRegular/> : <MenuHamburger/>}
+            {isDesktopResolution ? <MenuRegular/> : <MenuHamburger/>}
         </Grid2>
     )
 }
