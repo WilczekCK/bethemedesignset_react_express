@@ -30,6 +30,7 @@ a{
   text-decoration: none;
   background: transparent;
   box-shadow: none;
+  font-weight:500;
 }
 
 a:hover {

@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 
 const ItemMobile = styled(Paper)(({ }) => ({
-    color: 'black',
+    color: 'var(--textDarkerGrey)',
     padding: '10px 20px',
     boxShadow: 'unset',
     '&:hover': {
