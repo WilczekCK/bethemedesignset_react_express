@@ -4,12 +4,12 @@ import LibraryRoute from "./Library";
 import HomeRoute from './Home'
 import AboutRoute from './About'
 import ErrorRoute from './Error'
-import NavBar from '../components/NavBar'
+import Header from '../components/Header'
 
 function Router(){
   return (
     <BrowserRouter>
-      <NavBar />
+      <Header />
 
       <Routes>
         <Route path="/" element={ <HomeRoute /> } errorElement={ <ErrorRoute /> } />
